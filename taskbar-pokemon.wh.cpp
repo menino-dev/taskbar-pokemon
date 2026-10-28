@@ -79,8 +79,8 @@ auto-hidden taskbar or a fullscreen app.
 // ==WindhawkModSettings==
 /*
 - pokemonCount: "1"
-  $name: Number of Pokémon
-  $description: How many Pokémon companions to show on the taskbar (1 to 6)
+  $name: "Number of Pokémon"
+  $description: "How many Pokémon companions to show on the taskbar (1 to 6)"
   $options:
   - "1": "1 Pokémon"
   - "2": "2 Pokémon"
@@ -90,8 +90,8 @@ auto-hidden taskbar or a fullscreen app.
   - "6": "6 Pokémon (Full Party)"
 
 - pokemonGen: "1"
-  $name: "Pokémon 1: Generation"
-  $description: Generation of Pokémon 1 to select from (Gen 1 to Gen 5)
+  $name: "Pokémon 1 - Generation"
+  $description: "Generation of Pokémon 1 to select from (Gen 1 to Gen 5)"
   $options:
   - "1": "Gen 1: Kanto (153 Pokémon)"
   - "2": "Gen 2: Johto (132 Pokémon)"
@@ -99,8 +99,8 @@ auto-hidden taskbar or a fullscreen app.
   - "4": "Gen 4: Sinnoh (142 Pokémon)"
   - "5": "Gen 5: Unova (69 Pokémon)"
 - pokemonGen1: pikachu
-  $name: Pokémon 1: Gen 1 Selection
-  $description: Active for Pokémon 1 when Generation 1 is selected
+  $name: "Pokémon 1 - Gen 1 Selection"
+  $description: "Active for Pokémon 1 when Generation 1 is selected"
   $options:
   - abra: "Abra"
   - aerodactyl: "Aerodactyl"
@@ -256,8 +256,8 @@ auto-hidden taskbar or a fullscreen app.
   - zapdos: "Zapdos"
   - zubat: "Zubat"
 - pokemonGen2: chikorita
-  $name: Pokémon 1: Gen 2 Selection
-  $description: Active for Pokémon 1 when Generation 2 is selected
+  $name: "Pokémon 1 - Gen 2 Selection"
+  $description: "Active for Pokémon 1 when Generation 2 is selected"
   $options:
   - aipom: "Aipom"
   - ampharos: "Ampharos"
@@ -392,8 +392,8 @@ auto-hidden taskbar or a fullscreen app.
   - xatu: "Xatu"
   - yanma: "Yanma"
 - pokemonGen3: treecko
-  $name: Pokémon 1: Gen 3 Selection
-  $description: Active for Pokémon 1 when Generation 3 is selected
+  $name: "Pokémon 1 - Gen 3 Selection"
+  $description: "Active for Pokémon 1 when Generation 3 is selected"
   $options:
   - absol: "Absol"
   - aggron: "Aggron"
@@ -534,8 +534,8 @@ auto-hidden taskbar or a fullscreen app.
   - zangoose: "Zangoose"
   - zigzagoon: "Zigzagoon"
 - pokemonGen4: turtwig
-  $name: Pokémon 1: Gen 4 Selection
-  $description: Active for Pokémon 1 when Generation 4 is selected
+  $name: "Pokémon 1 - Gen 4 Selection"
+  $description: "Active for Pokémon 1 when Generation 4 is selected"
   $options:
   - abomasnow: "Abomasnow"
   - ambipom: "Ambipom"
@@ -680,8 +680,8 @@ auto-hidden taskbar or a fullscreen app.
   - wormadam_trash: "Wormadam Trash"
   - yanmega: "Yanmega"
 - pokemonGen5: victini
-  $name: Pokémon 1: Gen 5 Selection
-  $description: Active for Pokémon 1 when Generation 5 is selected
+  $name: "Pokémon 1 - Gen 5 Selection"
+  $description: "Active for Pokémon 1 when Generation 5 is selected"
   $options:
   - alomomola: "Alomomola"
   - audino: "Audino"
@@ -753,51 +753,51 @@ auto-hidden taskbar or a fullscreen app.
   - zebstrika: "Zebstrika"
   - zorua: "Zorua"
 - pokemonCustom: ""
-  $name: "Pokémon 1: Custom Name or ID"
+  $name: "Pokémon 1 - Custom Name or ID"
   $description: "Type any Pokémon name or ID to override Pokémon 1 (e.g. lucario, charizard, pikachu)"
 - catName: ""
-  $name: "Pokémon 1: Custom Nickname"
+  $name: "Pokémon 1 - Custom Nickname"
   $description: "Optional custom nickname for Pokémon 1 (leave empty to show species name)"
 
 - pokemon2: "charmander"
-  $name: "Pokémon 2: Name or ID"
+  $name: "Pokémon 2 - Name or ID"
   $description: "Active when count >= 2. Name or ID of Pokémon 2 (e.g. charmander, cyndaquil, torchic, chimchar, snivy, etc.)"
 - pokemon2_name: ""
-  $name: "Pokémon 2: Nickname"
+  $name: "Pokémon 2 - Nickname"
   $description: "Optional nickname for Pokémon 2"
 
 - pokemon3: "squirtle"
-  $name: "Pokémon 3: Name or ID"
+  $name: "Pokémon 3 - Name or ID"
   $description: "Active when count >= 3. Name or ID of Pokémon 3 (e.g. squirtle, totodile, mudkip, piplup, oshawott, etc.)"
 - pokemon3_name: ""
-  $name: "Pokémon 3: Nickname"
+  $name: "Pokémon 3 - Nickname"
   $description: "Optional nickname for Pokémon 3"
 
 - pokemon4: "bulbasaur"
-  $name: "Pokémon 4: Name or ID"
+  $name: "Pokémon 4 - Name or ID"
   $description: "Active when count >= 4. Name or ID of Pokémon 4 (e.g. bulbasaur, chikorita, treecko, turtwig, etc.)"
 - pokemon4_name: ""
-  $name: "Pokémon 4: Nickname"
+  $name: "Pokémon 4 - Nickname"
   $description: "Optional nickname for Pokémon 4"
 
 - pokemon5: "eevee"
-  $name: "Pokémon 5: Name or ID"
+  $name: "Pokémon 5 - Name or ID"
   $description: "Active when count >= 5. Name or ID of Pokémon 5 (e.g. eevee, gengar, lucario, snorlax, etc.)"
 - pokemon5_name: ""
-  $name: "Pokémon 5: Nickname"
+  $name: "Pokémon 5 - Nickname"
   $description: "Optional nickname for Pokémon 5"
 
 - pokemon6: "mew"
-  $name: "Pokémon 6: Name or ID"
+  $name: "Pokémon 6 - Name or ID"
   $description: "Active when count >= 6. Name or ID of Pokémon 6 (e.g. mew, celebi, jirachi, victini, etc.)"
 - pokemon6_name: ""
-  $name: "Pokémon 6: Nickname"
+  $name: "Pokémon 6 - Nickname"
   $description: "Optional nickname for Pokémon 6"
 - birthday: ""
-  $name: Birthday (YYYY-MM-DD)
-  $description: Day 1 of the Pokémon's life. Leave empty to use the day the mod first ran.
+  $name: "Birthday (YYYY-MM-DD)"
+  $description: "Day 1 of the Pokémon's life. Leave empty to use the day the mod first ran."
 - catSize: auto
-  $name: Pokémon size
+  $name: "Pokémon size"
   $options:
   - auto: Automatic (follows display scaling)
   - "1": Small
@@ -805,58 +805,58 @@ auto-hidden taskbar or a fullscreen app.
   - "3": Large
   - "4": Huge
 - activityLevel: normal
-  $name: Activity level
+  $name: "Activity level"
   $options:
   - lazy: Lazy (naps a lot)
   - normal: Normal
   - hyper: Hyper (zoomies)
 - walkSpeed: 100
-  $name: Walk speed (%)
-  $description: 25 to 400
+  $name: "Walk speed (%)"
+  $description: "25 to 400"
 - roamZone: avoidTray
-  $name: Where the Pokémon can go
+  $name: "Where the Pokémon can go"
   $options:
   - avoidTray: The taskbar, except the system tray
   - whole: The whole taskbar
   - custom: Between the margins below
 - leftMargin: 0
-  $name: Left margin (px)
-  $description: Only used with "Between the margins below"
+  $name: "Left margin (px)"
+  $description: "Only used with Between the margins below"
 - rightMargin: 0
-  $name: Right margin (px)
-  $description: Only used with "Between the margins below"
+  $name: "Right margin (px)"
+  $description: "Only used with Between the margins below"
 - idleNapMinutes: 5
-  $name: Nap when I'm away for (minutes)
-  $description: 0 = never
+  $name: "Nap when I'm away for (minutes)"
+  $description: "0 = never"
 - sleepierAtNight: true
-  $name: Sleepier at night (11 pm to 7 am)
+  $name: "Sleepier at night (11 pm to 7 am)"
 - reactToWindows: true
-  $name: React to new windows and flashing taskbar buttons
+  $name: "React to new windows and flashing taskbar buttons"
 - chaseCursor: true
-  $name: Pounce on a fast-moving cursor
+  $name: "Pounce on a fast-moving cursor"
 - toys: true
-  $name: Pokéball toy visits and gifts
-  $description: The Pokéball from the right-click menu works either way
+  $name: "Pokéball toy visits and gifts"
+  $description: "The Pokéball from the right-click menu works either way"
 - danceToMusic: true
-  $name: Dance when music is playing
-  $description: Any sound counts, including videos, calls and games
+  $name: "Dance when music is playing"
+  $description: "Any sound counts, including videos, calls and games"
 - mealtimes: true
-  $name: Mealtimes (asks for a treat around 8:00 and 19:00)
+  $name: "Mealtimes (asks for a treat around 8:00 and 19:00)"
 - seasonalHats: false
-  $name: Seasonal hats
+  $name: "Seasonal hats"
 - sounds: false
-  $name: Sounds (bips/cries)
-  $description: Quiet during Do Not Disturb and fullscreen apps
+  $name: "Sounds (bips/cries)"
+  $description: "Quiet during Do Not Disturb and fullscreen apps"
 - soundVolume: 50
-  $name: Sound volume (%)
+  $name: "Sound volume (%)"
 - showEffects: true
-  $name: Show hearts and other effects
+  $name: "Show hearts and other effects"
 - ghost: false
-  $name: Ghost Pokémon
-  $description: Clicks pass straight through the Pokémon to the taskbar
+  $name: "Ghost Pokémon"
+  $description: "Clicks pass straight through the Pokémon to the taskbar"
 - stayStill: false
-  $name: Stay still
-  $description: Keep the Pokémon in one place
+  $name: "Stay still"
+  $description: "Keep the Pokémon in one place"
 */
 // ==/WindhawkModSettings==
 
