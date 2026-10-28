@@ -1,0 +1,55 @@
+# Build artifacts
+build/
+bin/
+obj/
+*.exe
+*.obj
+*.o
+*.pdb
+*.ilk
+*.lib
+*.a
+*.dll
+
+# Python cache & virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+
+# Editor & OS files
+.vscode/
+.idea/
+.vs/
+*.sublime-project
+*.sublime-workspace
+Thumbs.db
+[Dd]esktop.ini
+
+# Upstream submodules/clones (separate git repos)
+upstream/
+upstream-pokemon/
+
+# Previous Hero experiment files
+taskbar-hero*
+tools/hero*
+tools/generate_spin_frames.py
+tools/extract_sprites.py
+tools/check_map.py
+tools/test_alignment.py
+tools/adapt_tests.py
+tools/verify_roundtrip.py
+tools/run_all_checks.ps1
+tools/make_previews.py
+tools/engine_tests.cpp
+tests/engine_tests.cpp
+
+# Generated test outputs & frames cache
+tools/out/
+*.tmp
+*.log
+
+# Antigravity agent files
+.agents/

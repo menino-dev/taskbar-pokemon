@@ -1,0 +1,265 @@
+{
+  "pokemon": "pikachu",
+  "shiny": false,
+  "anims": [
+    {
+      "name": "walk",
+      "ms": 125,
+      "loop": true,
+      "mirror": false,
+      "frames": [
+        "pikachu_default_walk_00",
+        "pikachu_default_walk_01"
+      ]
+    },
+    {
+      "name": "sit",
+      "ms": 350,
+      "loop": true,
+      "mirror": false,
+      "frames": [
+        "pikachu_default_idle_00",
+        "pikachu_default_idle_01"
+      ]
+    },
+    {
+      "name": "sit_tail",
+      "ms": 200,
+      "loop": false,
+      "mirror": false,
+      "frames": [
+        "pikachu_default_idle_01",
+        "pikachu_default_idle_00",
+        "pikachu_default_idle_01"
+      ]
+    },
+    {
+      "name": "sleep",
+      "ms": 1000,
+      "loop": true,
+      "mirror": false,
+      "frames": [
+        "pikachu_default_idle_00"
+      ]
+    },
+    {
+      "name": "wake",
+      "ms": 180,
+      "loop": false,
+      "mirror": false,
+      "frames": [
+        "pikachu_default_idle_01",
+        "pikachu_default_idle_00"
+      ]
+    },
+    {
+      "name": "loaf",
+      "ms": 1000,
+      "loop": true,
+      "mirror": false,
+      "frames": [
+        "pikachu_default_idle_00"
+      ]
+    },
+    {
+      "name": "crouch",
+      "ms": 150,
+      "loop": true,
+      "mirror": false,
+      "frames": [
+        "pikachu_default_walk_00",
+        "pikachu_default_walk_01"
+      ]
+    },
+    {
+      "name": "pounce",
+      "ms": 130,
+      "loop": false,
+      "mirror": false,
+      "frames": [
+        "pikachu_default_walk_01"
+      ]
+    },
+    {
+      "name": "happy",
+      "ms": 120,
+      "loop": true,
+      "mirror": false,
+      "frames": [
+        "pikachu_default_idle_00",
+        "pikachu_default_idle_01"
+      ]
+    },
+    {
+      "name": "meow",
+      "ms": 160,
+      "loop": false,
+      "mirror": false,
+      "frames": [
+        "pikachu_default_idle_01"
+      ]
+    },
+    {
+      "name": "roll",
+      "ms": 180,
+      "loop": false,
+      "mirror": false,
+      "frames": [
+        "pikachu_default_idle_00",
+        "pikachu_default_walk_01"
+      ],
+      "upside_down": [
+        1
+      ]
+    },
+    {
+      "name": "belly",
+      "ms": 280,
+      "loop": true,
+      "mirror": false,
+      "frames": [
+        "pikachu_default_walk_01",
+        "pikachu_default_idle_01"
+      ],
+      "upside_down": [
+        0,
+        1
+      ]
+    },
+    {
+      "name": "dangle",
+      "ms": 200,
+      "loop": true,
+      "mirror": false,
+      "frames": [
+        "pikachu_default_walk_01"
+      ]
+    },
+    {
+      "name": "heart",
+      "source": "original"
+    },
+    {
+      "name": "alert",
+      "source": "original"
+    },
+    {
+      "name": "stretch",
+      "ms": 250,
+      "loop": false,
+      "mirror": false,
+      "frames": [
+        "pikachu_default_walk_00",
+        "pikachu_default_idle_00"
+      ]
+    },
+    {
+      "name": "yawn",
+      "ms": 220,
+      "loop": false,
+      "mirror": false,
+      "frames": [
+        "pikachu_default_idle_01"
+      ]
+    },
+    {
+      "name": "groom",
+      "ms": 200,
+      "loop": true,
+      "mirror": false,
+      "frames": [
+        "pikachu_default_idle_00",
+        "pikachu_default_walk_00"
+      ]
+    },
+    {
+      "name": "scratch",
+      "ms": 100,
+      "loop": true,
+      "mirror": false,
+      "frames": [
+        "pikachu_default_idle_01",
+        "pikachu_default_idle_00"
+      ]
+    },
+    {
+      "name": "knead",
+      "ms": 240,
+      "loop": true,
+      "mirror": false,
+      "frames": [
+        "pikachu_default_walk_00",
+        "pikachu_default_walk_01"
+      ]
+    },
+    {
+      "name": "zzz",
+      "source": "original"
+    },
+    {
+      "name": "bat",
+      "ms": 100,
+      "loop": false,
+      "mirror": false,
+      "frames": [
+        "pikachu_default_walk_00",
+        "pikachu_default_walk_01"
+      ]
+    },
+    {
+      "name": "butterfly",
+      "source": "original"
+    },
+    {
+      "name": "yarn",
+      "ms": 120,
+      "loop": true,
+      "mirror": false,
+      "frames": [
+        "pokeball_00",
+        "pokeball_01"
+      ]
+    },
+    {
+      "name": "gift",
+      "ms": 1000,
+      "loop": true,
+      "mirror": false,
+      "frames": [
+        "pokeball_00"
+      ]
+    },
+    {
+      "name": "dance",
+      "ms": 150,
+      "loop": true,
+      "mirror": false,
+      "frames": [
+        "pikachu_default_dance_00",
+        "pikachu_default_dance_01",
+        "pikachu_default_dance_02",
+        "pikachu_default_dance_03"
+      ]
+    },
+    {
+      "name": "note",
+      "source": "original"
+    },
+    {
+      "name": "fish",
+      "source": "original"
+    },
+    {
+      "name": "hat_witch",
+      "source": "original"
+    },
+    {
+      "name": "hat_santa",
+      "source": "original"
+    },
+    {
+      "name": "hat_party",
+      "source": "original"
+    }
+  ]
+}
