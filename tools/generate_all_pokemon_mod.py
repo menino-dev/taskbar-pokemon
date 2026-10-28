@@ -202,9 +202,20 @@ def main():
 
     # 1. Generate YAML Settings
     yaml_lines = [
+        "- pokemonCount: \"1\"",
+        "  $name: Number of Pokémon",
+        "  $description: How many Pokémon companions to show on the taskbar (1 to 6)",
+        "  $options:",
+        "  - \"1\": \"1 Pokémon\"",
+        "  - \"2\": \"2 Pokémon\"",
+        "  - \"3\": \"3 Pokémon\"",
+        "  - \"4\": \"4 Pokémon\"",
+        "  - \"5\": \"5 Pokémon\"",
+        "  - \"6\": \"6 Pokémon (Full Party)\"",
+        "",
         "- pokemonGen: \"1\"",
-        "  $name: Generation",
-        "  $description: Generation of Pokémon to select from (Gen 1 to Gen 5)",
+        "  $name: \"Pokémon 1: Generation\"",
+        "  $description: Generation of Pokémon 1 to select from (Gen 1 to Gen 5)",
         "  $options:"
     ]
     for g_num in range(1, 6):
@@ -213,19 +224,54 @@ def main():
     for g_num in range(1, 6):
         def_poke = GEN_DEFAULTS.get(g_num, gen_pokes[g_num][0]['id'])
         yaml_lines.append(f"- pokemonGen{g_num}: {def_poke}")
-        yaml_lines.append(f"  $name: Gen {g_num} Pokémon")
-        yaml_lines.append(f"  $description: Active when Generation {g_num} is selected")
+        yaml_lines.append(f"  $name: Pokémon 1: Gen {g_num} Selection")
+        yaml_lines.append(f"  $description: Active for Pokémon 1 when Generation {g_num} is selected")
         yaml_lines.append("  $options:")
         for p in gen_pokes[g_num]:
             yaml_lines.append(f"  - {p['id']}: \"{p['name']}\"")
 
     yaml_lines.extend([
         "- pokemonCustom: \"\"",
-        "  $name: Custom Pokémon Name",
-        "  $description: Type any Pokémon name to override the dropdowns (e.g. lucario, charizard, pikachu)",
+        "  $name: \"Pokémon 1: Custom Name or ID\"",
+        "  $description: \"Type any Pokémon name or ID to override Pokémon 1 (e.g. lucario, charizard, pikachu)\"",
         "- catName: \"\"",
-        "  $name: Companion Nickname",
-        "  $description: Custom nickname for your Pokémon (leave empty to show its species name)",
+        "  $name: \"Pokémon 1: Custom Nickname\"",
+        "  $description: \"Optional custom nickname for Pokémon 1 (leave empty to show species name)\"",
+        "",
+        "- pokemon2: \"charmander\"",
+        "  $name: \"Pokémon 2: Name or ID\"",
+        "  $description: \"Active when count >= 2. Name or ID of Pokémon 2 (e.g. charmander, cyndaquil, torchic, chimchar, snivy, etc.)\"",
+        "- pokemon2_name: \"\"",
+        "  $name: \"Pokémon 2: Nickname\"",
+        "  $description: \"Optional nickname for Pokémon 2\"",
+        "",
+        "- pokemon3: \"squirtle\"",
+        "  $name: \"Pokémon 3: Name or ID\"",
+        "  $description: \"Active when count >= 3. Name or ID of Pokémon 3 (e.g. squirtle, totodile, mudkip, piplup, oshawott, etc.)\"",
+        "- pokemon3_name: \"\"",
+        "  $name: \"Pokémon 3: Nickname\"",
+        "  $description: \"Optional nickname for Pokémon 3\"",
+        "",
+        "- pokemon4: \"bulbasaur\"",
+        "  $name: \"Pokémon 4: Name or ID\"",
+        "  $description: \"Active when count >= 4. Name or ID of Pokémon 4 (e.g. bulbasaur, chikorita, treecko, turtwig, etc.)\"",
+        "- pokemon4_name: \"\"",
+        "  $name: \"Pokémon 4: Nickname\"",
+        "  $description: \"Optional nickname for Pokémon 4\"",
+        "",
+        "- pokemon5: \"eevee\"",
+        "  $name: \"Pokémon 5: Name or ID\"",
+        "  $description: \"Active when count >= 5. Name or ID of Pokémon 5 (e.g. eevee, gengar, lucario, snorlax, etc.)\"",
+        "- pokemon5_name: \"\"",
+        "  $name: \"Pokémon 5: Nickname\"",
+        "  $description: \"Optional nickname for Pokémon 5\"",
+        "",
+        "- pokemon6: \"mew\"",
+        "  $name: \"Pokémon 6: Name or ID\"",
+        "  $description: \"Active when count >= 6. Name or ID of Pokémon 6 (e.g. mew, celebi, jirachi, victini, etc.)\"",
+        "- pokemon6_name: \"\"",
+        "  $name: \"Pokémon 6: Nickname\"",
+        "  $description: \"Optional nickname for Pokémon 6\"",
         "- birthday: \"\"",
         "  $name: Birthday (YYYY-MM-DD)",
         "  $description: Day 1 of the Pokémon's life. Leave empty to use the day the mod first ran.",
@@ -392,10 +438,13 @@ def main():
 };"""
 
     new_struct = """struct Settings {
+    int pokemonCount; // 1 to 6
     int gen;  // 1 to 5
     wchar_t genPokemon[6][64];  // gen 1..5
     wchar_t customPokemon[64];
     wchar_t catName[64];
+    wchar_t extraPokemon[5][64];    // slots 2..6 species name or ID
+    wchar_t extraNicknames[5][64];  // slots 2..6 nicknames
     int birthday;  // days since 1970-01-01, 0 = the day the mod first ran
     int size;  // 0 = auto
     engine::ActivityLevel activityLevel;
@@ -446,10 +495,13 @@ def main():
 };"""
 
     new_def = """constexpr Settings kDefaultSettings = {
+    .pokemonCount = 1,
     .gen = 1,
     .genPokemon = {{}, L"pikachu", L"chikorita", L"treecko", L"turtwig", L"victini"},
     .customPokemon = L"",
     .catName = L"",
+    .extraPokemon = {L"charmander", L"squirtle", L"bulbasaur", L"eevee", L"mew"},
+    .extraNicknames = {L"", L"", L"", L"", L""},
     .birthday = 0,
     .size = 0,
     .activityLevel = engine::ActivityLevel::Normal,
@@ -478,14 +530,53 @@ def main():
     loader_functions = """
 // --- dynamic pokemon loader --------------------------------------------------
 
-inline const wchar_t* GetCurrentPokemonKey(const Settings& s) {
-    if (s.customPokemon[0]) {
-        return s.customPokemon;
+constexpr int kMaxPokemon = 6;
+CatWindow g_cats[kMaxPokemon];
+int g_activePokemonCount = 1;
+
+CatWindow* FindCatByHwnd(HWND hwnd) {
+    if (!hwnd) return nullptr;
+    CatWindow* c = (CatWindow*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
+    if (c) return c;
+    for (int i = 0; i < kMaxPokemon; i++) {
+        if (g_cats[i].hwnd == hwnd || g_cats[i].toy.hwnd == hwnd) {
+            SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)&g_cats[i]);
+            return &g_cats[i];
+        }
     }
-    if (s.gen >= 1 && s.gen <= 5 && s.genPokemon[s.gen][0]) {
-        return s.genPokemon[s.gen];
+    return nullptr;
+}
+
+inline const wchar_t* GetPokemonKeyForSlot(const Settings& s, int slotIndex) {
+    if (slotIndex == 0) {
+        if (s.customPokemon[0]) return s.customPokemon;
+        if (s.gen >= 1 && s.gen <= 5 && s.genPokemon[s.gen][0]) {
+            return s.genPokemon[s.gen];
+        }
+        return L"pikachu";
+    }
+    int extraIdx = slotIndex - 1;
+    if (extraIdx >= 0 && extraIdx < 5) {
+        if (s.extraPokemon[extraIdx][0]) return s.extraPokemon[extraIdx];
+        const wchar_t* const kDefaults[5] = {L"charmander", L"squirtle", L"bulbasaur", L"eevee", L"mew"};
+        return kDefaults[extraIdx];
     }
     return L"pikachu";
+}
+
+inline const wchar_t* GetPokemonNicknameForSlot(const Settings& s, int slotIndex) {
+    if (slotIndex == 0) {
+        return s.catName;
+    }
+    int extraIdx = slotIndex - 1;
+    if (extraIdx >= 0 && extraIdx < 5) {
+        return s.extraNicknames[extraIdx];
+    }
+    return L"";
+}
+
+[[maybe_unused]] inline const wchar_t* GetCurrentPokemonKey(const Settings& s) {
+    return GetPokemonKeyForSlot(s, 0);
 }
 
 static void NormalizeName(const char* in, char* out, size_t outSize) {
@@ -645,30 +736,31 @@ void ApplyPokemonToAtlas(CatWindow& c, const pokemon_bank::PokemonSpecies* sp) {
     copyFrame(46, danceRight);  // 3. direita
     copyFrame(47, idle0);       // 4. frontal volta
 
-    // Update anchors for character frames
+    // Initialize per-window head anchors
+    memcpy(c.anchors, sprites::kFrameAnchors, sizeof(c.anchors));
+
     for (int i = 0; i < sprites::kFrameCount; i++) {
         if (i == 18 || i == 19 || i == 20) {
-            // roll frame 1 and belly frames lie down
-            sprites::kFrameAnchors[i].x = sp->anchorX;
-            sprites::kFrameAnchors[i].y = 31;
-            sprites::kFrameAnchors[i].upright = false;
+            c.anchors[i].x = sp->anchorX;
+            c.anchors[i].y = 31;
+            c.anchors[i].upright = false;
         } else if (i == 44) {
-            sprites::kFrameAnchors[i].x = (uint8_t)(sp->anchorX > dx_left ? sp->anchorX - dx_left : sp->anchorX);
-            sprites::kFrameAnchors[i].y = sp->anchorY;
-            sprites::kFrameAnchors[i].upright = true;
+            c.anchors[i].x = (uint8_t)(sp->anchorX > dx_left ? sp->anchorX - dx_left : sp->anchorX);
+            c.anchors[i].y = sp->anchorY;
+            c.anchors[i].upright = true;
         } else if (i == 46) {
-            sprites::kFrameAnchors[i].x = (uint8_t)(sp->anchorX + dx_right < 32 ? sp->anchorX + dx_right : sp->anchorX);
-            sprites::kFrameAnchors[i].y = sp->anchorY;
-            sprites::kFrameAnchors[i].upright = true;
+            c.anchors[i].x = (uint8_t)(sp->anchorX + dx_right < 32 ? sp->anchorX + dx_right : sp->anchorX);
+            c.anchors[i].y = sp->anchorY;
+            c.anchors[i].upright = true;
         } else if (i < 22 || (i >= 26 && i <= 34) || (i >= 37 && i <= 38) || i == 45 || i == 47) {
-            sprites::kFrameAnchors[i].x = sp->anchorX;
-            sprites::kFrameAnchors[i].y = sp->anchorY;
-            sprites::kFrameAnchors[i].upright = true;
+            c.anchors[i].x = sp->anchorX;
+            c.anchors[i].y = sp->anchorY;
+            c.anchors[i].upright = true;
         }
     }
 }
 
-bool DecodeAtlas(CatWindow& c) {
+[[maybe_unused]] bool DecodeAtlas(CatWindow& c, const wchar_t* selectedKey) {
     // 1. Decode base atlas (effects, toys, default frames)
     for (int i = 0; i < sprites::kFrameCount; i++) {
         uint16_t begin = sprites::kFrameOffsets[i];
@@ -682,10 +774,13 @@ bool DecodeAtlas(CatWindow& c) {
     }
 
     // 2. Resolve selected Pokemon species
-    const wchar_t* selectedKey = GetCurrentPokemonKey(c.settings);
     const pokemon_bank::PokemonSpecies* sp = FindPokemonSpecies(selectedKey);
     ApplyPokemonToAtlas(c, sp);
     return true;
+}
+
+[[maybe_unused]] bool DecodeAtlas(CatWindow& c) {
+    return DecodeAtlas(c, GetPokemonKeyForSlot(c.settings, c.index));
 }
 """
 
@@ -693,22 +788,9 @@ bool DecodeAtlas(CatWindow& c) {
     assert hook_anchor in code, "Could not find g_hwnd anchor"
     code = code.replace(hook_anchor, hook_anchor + "\n" + loader_functions)
 
-    # Remove the old DecodeAtlas at the bottom
-    old_decode = """bool DecodeAtlas(CatWindow& c) {
-    for (int i = 0; i < sprites::kFrameCount; i++) {
-        uint16_t begin = sprites::kFrameOffsets[i];
-        uint16_t end = sprites::kFrameOffsets[i + 1];
-        if (!cat::DecodeRleFrame(sprites::kFrameData + begin, end - begin,
-                                 sprites::kPalette, std::size(sprites::kPalette),
-                                 c.atlas[i],
-                                 cat::kSpriteSize * cat::kSpriteSize)) {
-            return false;
-        }
-    }
-    return true;
-}"""
-    assert old_decode in code, "Could not find old DecodeAtlas at bottom"
-    code = code.replace(old_decode, "// (DecodeAtlas and dynamic pokemon loader defined above)")
+    # Replace single CatWindow g_cat; with comment (g_cats is declared in loader_functions)
+    assert "CatWindow g_cat;" in code, "Could not find CatWindow g_cat; in code"
+    code = code.replace("CatWindow g_cat;", "// (CatWindow g_cats[kMaxPokemon] declared in dynamic loader above)")
 
     # Replace ReadWindhawkSettings
     old_read = """[[maybe_unused]] Settings ReadWindhawkSettings() {
@@ -747,6 +829,9 @@ bool DecodeAtlas(CatWindow& c) {
     new_read = """[[maybe_unused]] Settings ReadWindhawkSettings() {
     Settings s = kDefaultSettings;
 
+    constexpr const wchar_t* kCounts[] = {L"1", L"2", L"3", L"4", L"5", L"6"};
+    s.pokemonCount = ReadChoice(L"pokemonCount", kCounts, 0) + 1;
+
     constexpr const wchar_t* kGens[] = {L"1", L"2", L"3", L"4", L"5"};
     s.gen = ReadChoice(L"pokemonGen", kGens, 0) + 1;
 
@@ -765,6 +850,29 @@ bool DecodeAtlas(CatWindow& c) {
     auto name = WindhawkUtils::StringSetting::make(L"catName");
     wcsncpy(s.catName, name, std::size(s.catName) - 1);
     s.catName[std::size(s.catName) - 1] = L'\\0';
+
+    const wchar_t* const kDefaultExtras[5] = {L"charmander", L"squirtle", L"bulbasaur", L"eevee", L"mew"};
+    for (int i = 0; i < 5; i++) {
+        wchar_t keySpec[32], keyNick[32];
+        swprintf_s(keySpec, L"pokemon%d", i + 2);
+        swprintf_s(keyNick, L"pokemon%d_name", i + 2);
+        auto specVal = WindhawkUtils::StringSetting::make(keySpec);
+        if (specVal && specVal[0]) {
+            wcsncpy(s.extraPokemon[i], specVal, std::size(s.extraPokemon[i]) - 1);
+            s.extraPokemon[i][std::size(s.extraPokemon[i]) - 1] = L'\\0';
+        } else {
+            wcsncpy(s.extraPokemon[i], kDefaultExtras[i], std::size(s.extraPokemon[i]) - 1);
+            s.extraPokemon[i][std::size(s.extraPokemon[i]) - 1] = L'\\0';
+        }
+        auto nickVal = WindhawkUtils::StringSetting::make(keyNick);
+        if (nickVal && nickVal[0]) {
+            wcsncpy(s.extraNicknames[i], nickVal, std::size(s.extraNicknames[i]) - 1);
+            s.extraNicknames[i][std::size(s.extraNicknames[i]) - 1] = L'\\0';
+        } else {
+            s.extraNicknames[i][0] = L'\\0';
+        }
+    }
+
     s.birthday = cat::ParseDate(WindhawkUtils::StringSetting::make(L"birthday"));
 
     constexpr const wchar_t* kSizes[] = {L"auto", L"1", L"2", L"3", L"4"};
@@ -795,56 +903,9 @@ bool DecodeAtlas(CatWindow& c) {
     assert old_read in code, "Could not find ReadWindhawkSettings"
     code = code.replace(old_read, new_read)
 
-    # In WM_APP_RELOAD_SETTINGS, re-decode atlas to update Pokemon on the fly
-    old_reload = """        case WM_APP_RELOAD_SETTINGS:
-            c.settings = LoadSettings();
-            if (!c.settings.sounds) {
-                StopSounds(c);
-            }
-            BuildSounds(c);
-            ApplyGhostStyle(c);
-            c.scale = 0;  // force bitmap rebuild in case size changed
-            return 0;"""
-
-    new_reload = """        case WM_APP_RELOAD_SETTINGS:
-            c.settings = LoadSettings();
-            DecodeAtlas(c);
-            c.renderedFrame = -1;
-            if (!c.settings.sounds) {
-                StopSounds(c);
-            }
-            BuildSounds(c);
-            ApplyGhostStyle(c);
-            c.scale = 0;  // force bitmap rebuild in case size changed
-            return 0;"""
-    assert old_reload in code, "Could not find WM_APP_RELOAD_SETTINGS"
-    code = code.replace(old_reload, new_reload)
-
-    # In CatThread, ensure settings are loaded before DecodeAtlas
-    old_cat_thread_decode = """DWORD WINAPI CatThread(LPVOID) {
-    CatWindow& c = g_cat;
-    c.taskbar = WaitForTaskbar();
-    if (!c.taskbar) {
-        Wh_Log(L"No taskbar owned by this process, cat stays home");
-        return 0;
-    }
-    if (!DecodeAtlas(c)) {"""
-
-    new_cat_thread_decode = """DWORD WINAPI CatThread(LPVOID) {
-    CatWindow& c = g_cat;
-    c.settings = LoadSettings();
-    c.taskbar = WaitForTaskbar();
-    if (!c.taskbar) {
-        Wh_Log(L"No taskbar owned by this process, cat stays home");
-        return 0;
-    }
-    if (!DecodeAtlas(c)) {"""
-    assert old_cat_thread_decode in code, "Could not find CatThread DecodeAtlas"
-    code = code.replace(old_cat_thread_decode, new_cat_thread_decode)
-
     # Update tooltip species name display
     old_tooltip_name = """const wchar_t* name = c.settings.catName[0] ? c.settings.catName : L"The Pokémon";"""
-    new_tooltip_name = """    const wchar_t* selectedKey = GetCurrentPokemonKey(c.settings);
+    new_tooltip_name = """    const wchar_t* selectedKey = GetPokemonKeyForSlot(c.settings, c.index);
     const pokemon_bank::PokemonSpecies* currentSp = FindPokemonSpecies(selectedKey);
     wchar_t defaultNameBuf[64] = {};
     if (currentSp && currentSp->name) {
@@ -855,6 +916,389 @@ bool DecodeAtlas(CatWindow& c) {
     const wchar_t* name = c.settings.catName[0] ? c.settings.catName : defaultNameBuf;"""
     assert old_tooltip_name in code, "Could not find tooltip name line"
     code = code.replace(old_tooltip_name, new_tooltip_name)
+
+    # Replace the window procedures and CatThread with our multi-window manager
+    start_wndproc = code.find("LRESULT CALLBACK CatWndProc(HWND hwnd, UINT msg, WPARAM wParam,")
+    end_wndproc = code.find("\n}  // namespace\n\nBOOL Wh_ModInit()", start_wndproc)
+    assert start_wndproc >= 0 and end_wndproc >= 0, "Could not find CatWndProc..CatThread block"
+
+    multi_window_impl = """void ResetWindows(CatWindow& c);
+bool CreateCatWindow(CatWindow& c, HINSTANCE instance);
+void DestroyCatWindow(CatWindow& c);
+void ReloadAllPokemon(HINSTANCE instance);
+
+void ReattachAllToTaskbar() {
+    HWND taskbar = FindOwnTaskbar();
+    for (int i = 0; i < g_activePokemonCount; i++) {
+        g_cats[i].taskbar = taskbar;
+#ifndef WH_STANDALONE
+        if (taskbar && g_cats[i].hwnd) {
+            SetWindowLongPtr(g_cats[i].hwnd, GWLP_HWNDPARENT, (LONG_PTR)taskbar);
+            if (g_cats[i].toy.hwnd) {
+                SetWindowLongPtr(g_cats[i].toy.hwnd, GWLP_HWNDPARENT, (LONG_PTR)taskbar);
+            }
+        }
+#endif
+    }
+    Wh_Log(L"Taskbar recreated, reattached %d Pokémon", g_activePokemonCount);
+}
+
+void BroadcastShellHook(WPARAM code, HWND window) {
+    for (int i = 0; i < g_activePokemonCount; i++) {
+        OnShellHook(g_cats[i], code, window);
+    }
+}
+
+void BroadcastSessionChange(WPARAM change) {
+    for (int i = 0; i < g_activePokemonCount; i++) {
+        OnSessionChange(g_cats[i], change);
+    }
+}
+
+void DestroyCatWindow(CatWindow& c) {
+    if (c.hwnd) {
+        if (c.toy.hwnd) {
+            DestroyWindow(c.toy.hwnd);
+            c.toy.hwnd = nullptr;
+        }
+        KillTimer(c.hwnd, kTimerId);
+        KillTimer(c.hwnd, kSaveTimerId);
+        if (c.index == 0) {
+            DeregisterShellHookWindow(c.hwnd);
+            WTSUnRegisterSessionNotification(c.hwnd);
+        }
+        HWND h = c.hwnd;
+        c.hwnd = nullptr;
+        DestroyWindow(h);
+    }
+    ResetWindows(c);
+}
+
+void ReloadAllPokemon(HINSTANCE instance) {
+    Settings newSettings = LoadSettings();
+    int newCount = ClampInt(newSettings.pokemonCount, 1, kMaxPokemon);
+
+    for (int i = 0; i < kMaxPokemon; i++) {
+        CatWindow& c = g_cats[i];
+        c.index = i;
+        if (i < newCount) {
+            c.settings = newSettings;
+            const wchar_t* specKey = GetPokemonKeyForSlot(newSettings, i);
+            const wchar_t* nick = GetPokemonNicknameForSlot(newSettings, i);
+            if (nick && nick[0]) {
+                wcsncpy_s(c.settings.catName, nick, 63);
+            } else {
+                c.settings.catName[0] = L'\\0';
+            }
+            if (!c.hwnd) {
+                c.taskbar = g_cats[0].taskbar ? g_cats[0].taskbar : FindOwnTaskbar();
+                DecodeAtlas(c, specKey);
+                double defaultX = 100.0 + (i * 200.0);
+                c.state = LoadCat(GetTickCount64(), i, defaultX);
+                LoadLifeEvents(c, i);
+                BuildSounds(c);
+                if (CreateCatWindow(c, instance)) {
+                    SetTimerInterval(c, kActiveIntervalMs);
+                }
+            } else {
+                DecodeAtlas(c, specKey);
+                c.renderedFrame = -1;
+                if (!c.settings.sounds) {
+                    StopSounds(c);
+                }
+                BuildSounds(c);
+                ApplyGhostStyle(c);
+                c.scale = 0;
+            }
+        } else {
+            if (c.hwnd) {
+                SaveCat(c.state, i);
+                StopSounds(c);
+                DestroyCatWindow(c);
+            }
+        }
+    }
+    g_activePokemonCount = newCount;
+    if (g_cats[0].hwnd) {
+        g_hwnd = g_cats[0].hwnd;
+    }
+}
+
+LRESULT CALLBACK CatWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
+    CatWindow* c = FindCatByHwnd(hwnd);
+    if (!c) {
+        return DefWindowProc(hwnd, msg, wParam, lParam);
+    }
+    if (c->taskbarCreatedMsg && msg == c->taskbarCreatedMsg) {
+        ReattachAllToTaskbar();
+        return 0;
+    }
+    if (c->shellHookMsg && msg == c->shellHookMsg) {
+        BroadcastShellHook(wParam, (HWND)lParam);
+        return 0;
+    }
+    switch (msg) {
+        case WM_NOTIFY:
+            return OnNotify(*c, (NMHDR*)lParam);
+        case WM_WTSSESSION_CHANGE:
+            BroadcastSessionChange(wParam);
+            return 0;
+        case WM_TIMER:
+            if (wParam == kTimerId) {
+                Tick(*c);
+            } else if (wParam == kSaveTimerId) {
+                SaveCat(c->state, c->index);
+            }
+            return 0;
+        case WM_MOUSEMOVE:
+            OnMouseMove(*c);
+            return 0;
+        case WM_MOUSELEAVE:
+            c->mouse.hovered = false;
+            c->mouse.trackingLeave = false;
+            return 0;
+        case WM_LBUTTONDOWN:
+            OnButtonDown(*c);
+            return 0;
+        case WM_LBUTTONUP:
+            OnButtonUp(*c);
+            return 0;
+        case WM_LBUTTONDBLCLK:
+            OnDoubleClick(*c);
+            return 0;
+        case WM_CAPTURECHANGED:
+            EndDrag(*c);
+            return 0;
+        case WM_RBUTTONUP:
+            ShowMenu(*c);
+            return 0;
+        case WM_SETCURSOR:
+            SetCursor(LoadCursor(nullptr, IDC_HAND));
+            return TRUE;
+        case WM_MOUSEACTIVATE:
+            return MA_NOACTIVATE;
+        case WM_APP_RELOAD_SETTINGS: {
+            HINSTANCE instance = nullptr;
+            GetModuleHandleEx(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS |
+                                  GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
+                              (LPCWSTR)&CatWndProc, &instance);
+            ReloadAllPokemon(instance);
+            return 0;
+        }
+        case WM_CLOSE:
+            for (int i = 0; i < kMaxPokemon; i++) {
+                if (g_cats[i].hwnd) {
+                    SaveCat(g_cats[i].state, i);
+                    DestroyCatWindow(g_cats[i]);
+                }
+            }
+            PostQuitMessage(0);
+            return 0;
+        case WM_DESTROY:
+            return 0;
+    }
+    return DefWindowProc(hwnd, msg, wParam, lParam);
+}
+
+LRESULT CALLBACK ToyWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
+    CatWindow* c = FindCatByHwnd(hwnd);
+    if (!c) {
+        return DefWindowProc(hwnd, msg, wParam, lParam);
+    }
+    switch (msg) {
+        case WM_LBUTTONUP:
+            SetState(*c, engine::OnToyClicked(c->state, c->world, GetTickCount64()));
+            return 0;
+        case WM_RBUTTONUP:
+            ShowToyMenu(*c, hwnd);
+            return 0;
+        case WM_SETCURSOR:
+            SetCursor(LoadCursor(nullptr, IDC_HAND));
+            return TRUE;
+        case WM_MOUSEACTIVATE:
+            return MA_NOACTIVATE;
+    }
+    return DefWindowProc(hwnd, msg, wParam, lParam);
+}
+
+HWND WaitForTaskbar() {
+    for (;;) {
+        if (FindWindow(L"Shell_TrayWnd", nullptr)) {
+            return FindOwnTaskbar();
+        }
+        if (WaitForSingleObject(g_stopEvent, kTaskbarPollMs) == WAIT_OBJECT_0) {
+            return nullptr;
+        }
+    }
+}
+
+void ResetWindows(CatWindow& c) {
+    FreeSurface(c.surface);
+    FreeSurface(c.toy.surface);
+    c.toy = ToyWindow();
+    c.hwnd = nullptr;
+    c.tooltip = nullptr;
+    c.scale = 0;
+    c.renderedFrame = -1;
+    c.renderedEffect = {-1, 0, 0};
+    c.visible = false;
+    c.timerInterval = 0;
+    c.mouse = MouseState();
+}
+
+bool CreateCatWindow(CatWindow& c, HINSTANCE instance) {
+    DWORD exStyle = WS_EX_LAYERED | WS_EX_TOOLWINDOW | WS_EX_NOACTIVATE;
+    HWND owner = c.taskbar;
+#ifdef WH_STANDALONE
+    exStyle |= WS_EX_TOPMOST;
+    owner = nullptr;
+#endif
+    c.hwnd = CreateWindowEx(exStyle, kWindowClass, L"Taskbar Pokémon", WS_POPUP, 0,
+                            0, 1, 1, owner, nullptr, instance, nullptr);
+    if (!c.hwnd) {
+        Wh_Log(L"CreateWindowEx failed: %u", GetLastError());
+        return false;
+    }
+    SetWindowLongPtr(c.hwnd, GWLP_USERDATA, (LONG_PTR)&c);
+    ApplyGhostStyle(c);
+    c.shellHookMsg = RegisterWindowMessage(L"SHELLHOOK");
+    if (c.index == 0) {
+        if (!RegisterShellHookWindow(c.hwnd)) {
+            Wh_Log(L"RegisterShellHookWindow failed: %u", GetLastError());
+        }
+        if (!WTSRegisterSessionNotification(c.hwnd, NOTIFY_FOR_THIS_SESSION)) {
+            Wh_Log(L"WTSRegisterSessionNotification failed: %u", GetLastError());
+        }
+    }
+    CreateTooltip(c, instance);
+    SetTimer(c.hwnd, kSaveTimerId, kSaveIntervalMs, nullptr);
+    c.toy.hwnd = CreateWindowEx(exStyle, kToyWindowClass, L"Taskbar Pokémon Toy", WS_POPUP, 0, 0,
+                                1, 1, owner, nullptr, instance, nullptr);
+    if (c.toy.hwnd) {
+        SetWindowLongPtr(c.toy.hwnd, GWLP_USERDATA, (LONG_PTR)&c);
+    } else {
+        Wh_Log(L"Toy window creation failed: %u", GetLastError());
+    }
+    ApplyGhostStyle(c);
+    return true;
+}
+
+DWORD WINAPI CatThread(LPVOID) {
+    HWND taskbar = WaitForTaskbar();
+    if (!taskbar) {
+        Wh_Log(L"No taskbar owned by this process, Pokémon stay home");
+        return 0;
+    }
+
+    HINSTANCE instance = nullptr;
+    GetModuleHandleEx(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS |
+                          GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
+                      (LPCWSTR)&CatWndProc, &instance);
+    WNDCLASSEX wc = {sizeof(wc)};
+    wc.style = CS_DBLCLKS;
+    wc.lpfnWndProc = CatWndProc;
+    wc.hInstance = instance;
+    wc.lpszClassName = kWindowClass;
+    wc.hCursor = LoadCursor(nullptr, IDC_HAND);
+    if (!RegisterClassEx(&wc)) {
+        Wh_Log(L"RegisterClassEx failed: %u", GetLastError());
+        return 0;
+    }
+    WNDCLASSEX toyClass = {sizeof(toyClass)};
+    toyClass.lpfnWndProc = ToyWndProc;
+    toyClass.hInstance = instance;
+    toyClass.lpszClassName = kToyWindowClass;
+    toyClass.hCursor = LoadCursor(nullptr, IDC_HAND);
+    if (!RegisterClassEx(&toyClass)) {
+        Wh_Log(L"RegisterClassEx (toy) failed: %u", GetLastError());
+    }
+
+    UINT taskbarCreatedMsg = RegisterWindowMessage(L"TaskbarCreated");
+    for (int i = 0; i < kMaxPokemon; i++) {
+        g_cats[i].taskbarCreatedMsg = taskbarCreatedMsg;
+    }
+
+    StartAudioWatcher();
+
+    while (WaitForSingleObject(g_stopEvent, 0) != WAIT_OBJECT_0) {
+        if (!taskbar && !(taskbar = WaitForTaskbar())) {
+            break;
+        }
+
+        Settings settings = LoadSettings();
+        int count = ClampInt(settings.pokemonCount, 1, kMaxPokemon);
+        g_activePokemonCount = count;
+
+        for (int i = 0; i < count; i++) {
+            CatWindow& c = g_cats[i];
+            c.index = i;
+            c.taskbar = taskbar;
+            c.settings = settings;
+            const wchar_t* specKey = GetPokemonKeyForSlot(settings, i);
+            const wchar_t* nick = GetPokemonNicknameForSlot(settings, i);
+            if (nick && nick[0]) {
+                wcsncpy_s(c.settings.catName, nick, 63);
+            } else {
+                c.settings.catName[0] = L'\\0';
+            }
+            DecodeAtlas(c, specKey);
+            double defaultX = 100.0 + (i * 200.0);
+            c.state = LoadCat(GetTickCount64(), i, defaultX);
+            LoadLifeEvents(c, i);
+            BuildSounds(c);
+            if (!CreateCatWindow(c, instance)) {
+                break;
+            }
+        }
+        if (g_cats[0].hwnd) {
+            g_hwnd = g_cats[0].hwnd;
+        }
+        if (WaitForSingleObject(g_stopEvent, 0) == WAIT_OBJECT_0) {
+            for (int i = 0; i < count; i++) {
+                if (g_cats[i].hwnd) DestroyCatWindow(g_cats[i]);
+            }
+        } else {
+            for (int i = 0; i < count; i++) {
+                if (g_cats[i].hwnd) SetTimerInterval(g_cats[i], kActiveIntervalMs);
+            }
+            Wh_Log(L"%d Pokémon window(s) created", count);
+        }
+
+        MSG msg;
+        while (GetMessage(&msg, nullptr, 0, 0) > 0) {
+            TranslateMessage(&msg);
+            DispatchMessage(&msg);
+        }
+
+        g_hwnd = nullptr;
+        for (int i = 0; i < kMaxPokemon; i++) {
+            if (g_cats[i].hwnd) {
+                SaveCat(g_cats[i].state, i);
+                StopSounds(g_cats[i]);
+                DestroyCatWindow(g_cats[i]);
+            }
+        }
+        taskbar = nullptr;
+    }
+
+    for (int i = 0; i < kMaxPokemon; i++) {
+        ForceStopSounds(g_cats[i]);
+    }
+    StopAudioWatcher();
+    for (int i = 0; i < kMaxPokemon; i++) {
+        FreeSurface(g_cats[i].surface);
+        FreeSurface(g_cats[i].toy.surface);
+    }
+    UnregisterClass(kWindowClass, instance);
+    UnregisterClass(kToyWindowClass, instance);
+    for (int i = 0; i < kMaxPokemon; i++) {
+        g_cats[i].~CatWindow();
+        new (&g_cats[i]) CatWindow();
+    }
+    return 0;
+}
+"""
+    code = code[:start_wndproc] + multi_window_impl + code[end_wndproc:]
 
     # Update StartDance to set s.dir = 1
     old_start_dance = """inline CatState StartDance(CatState s, const World& w, uint64_t now) {

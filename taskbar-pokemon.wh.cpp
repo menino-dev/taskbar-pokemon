@@ -78,9 +78,20 @@ auto-hidden taskbar or a fullscreen app.
 
 // ==WindhawkModSettings==
 /*
+- pokemonCount: "1"
+  $name: Number of Pokémon
+  $description: How many Pokémon companions to show on the taskbar (1 to 6)
+  $options:
+  - "1": "1 Pokémon"
+  - "2": "2 Pokémon"
+  - "3": "3 Pokémon"
+  - "4": "4 Pokémon"
+  - "5": "5 Pokémon"
+  - "6": "6 Pokémon (Full Party)"
+
 - pokemonGen: "1"
-  $name: Generation
-  $description: Generation of Pokémon to select from (Gen 1 to Gen 5)
+  $name: "Pokémon 1: Generation"
+  $description: Generation of Pokémon 1 to select from (Gen 1 to Gen 5)
   $options:
   - "1": "Gen 1: Kanto (153 Pokémon)"
   - "2": "Gen 2: Johto (132 Pokémon)"
@@ -88,8 +99,8 @@ auto-hidden taskbar or a fullscreen app.
   - "4": "Gen 4: Sinnoh (142 Pokémon)"
   - "5": "Gen 5: Unova (69 Pokémon)"
 - pokemonGen1: pikachu
-  $name: Gen 1 Pokémon
-  $description: Active when Generation 1 is selected
+  $name: Pokémon 1: Gen 1 Selection
+  $description: Active for Pokémon 1 when Generation 1 is selected
   $options:
   - abra: "Abra"
   - aerodactyl: "Aerodactyl"
@@ -245,8 +256,8 @@ auto-hidden taskbar or a fullscreen app.
   - zapdos: "Zapdos"
   - zubat: "Zubat"
 - pokemonGen2: chikorita
-  $name: Gen 2 Pokémon
-  $description: Active when Generation 2 is selected
+  $name: Pokémon 1: Gen 2 Selection
+  $description: Active for Pokémon 1 when Generation 2 is selected
   $options:
   - aipom: "Aipom"
   - ampharos: "Ampharos"
@@ -381,8 +392,8 @@ auto-hidden taskbar or a fullscreen app.
   - xatu: "Xatu"
   - yanma: "Yanma"
 - pokemonGen3: treecko
-  $name: Gen 3 Pokémon
-  $description: Active when Generation 3 is selected
+  $name: Pokémon 1: Gen 3 Selection
+  $description: Active for Pokémon 1 when Generation 3 is selected
   $options:
   - absol: "Absol"
   - aggron: "Aggron"
@@ -523,8 +534,8 @@ auto-hidden taskbar or a fullscreen app.
   - zangoose: "Zangoose"
   - zigzagoon: "Zigzagoon"
 - pokemonGen4: turtwig
-  $name: Gen 4 Pokémon
-  $description: Active when Generation 4 is selected
+  $name: Pokémon 1: Gen 4 Selection
+  $description: Active for Pokémon 1 when Generation 4 is selected
   $options:
   - abomasnow: "Abomasnow"
   - ambipom: "Ambipom"
@@ -669,8 +680,8 @@ auto-hidden taskbar or a fullscreen app.
   - wormadam_trash: "Wormadam Trash"
   - yanmega: "Yanmega"
 - pokemonGen5: victini
-  $name: Gen 5 Pokémon
-  $description: Active when Generation 5 is selected
+  $name: Pokémon 1: Gen 5 Selection
+  $description: Active for Pokémon 1 when Generation 5 is selected
   $options:
   - alomomola: "Alomomola"
   - audino: "Audino"
@@ -742,11 +753,46 @@ auto-hidden taskbar or a fullscreen app.
   - zebstrika: "Zebstrika"
   - zorua: "Zorua"
 - pokemonCustom: ""
-  $name: Custom Pokémon Name
-  $description: Type any Pokémon name to override the dropdowns (e.g. lucario, charizard, pikachu)
+  $name: "Pokémon 1: Custom Name or ID"
+  $description: "Type any Pokémon name or ID to override Pokémon 1 (e.g. lucario, charizard, pikachu)"
 - catName: ""
-  $name: Companion Nickname
-  $description: Custom nickname for your Pokémon (leave empty to show its species name)
+  $name: "Pokémon 1: Custom Nickname"
+  $description: "Optional custom nickname for Pokémon 1 (leave empty to show species name)"
+
+- pokemon2: "charmander"
+  $name: "Pokémon 2: Name or ID"
+  $description: "Active when count >= 2. Name or ID of Pokémon 2 (e.g. charmander, cyndaquil, torchic, chimchar, snivy, etc.)"
+- pokemon2_name: ""
+  $name: "Pokémon 2: Nickname"
+  $description: "Optional nickname for Pokémon 2"
+
+- pokemon3: "squirtle"
+  $name: "Pokémon 3: Name or ID"
+  $description: "Active when count >= 3. Name or ID of Pokémon 3 (e.g. squirtle, totodile, mudkip, piplup, oshawott, etc.)"
+- pokemon3_name: ""
+  $name: "Pokémon 3: Nickname"
+  $description: "Optional nickname for Pokémon 3"
+
+- pokemon4: "bulbasaur"
+  $name: "Pokémon 4: Name or ID"
+  $description: "Active when count >= 4. Name or ID of Pokémon 4 (e.g. bulbasaur, chikorita, treecko, turtwig, etc.)"
+- pokemon4_name: ""
+  $name: "Pokémon 4: Nickname"
+  $description: "Optional nickname for Pokémon 4"
+
+- pokemon5: "eevee"
+  $name: "Pokémon 5: Name or ID"
+  $description: "Active when count >= 5. Name or ID of Pokémon 5 (e.g. eevee, gengar, lucario, snorlax, etc.)"
+- pokemon5_name: ""
+  $name: "Pokémon 5: Nickname"
+  $description: "Optional nickname for Pokémon 5"
+
+- pokemon6: "mew"
+  $name: "Pokémon 6: Name or ID"
+  $description: "Active when count >= 6. Name or ID of Pokémon 6 (e.g. mew, celebi, jirachi, victini, etc.)"
+- pokemon6_name: ""
+  $name: "Pokémon 6: Nickname"
+  $description: "Optional nickname for Pokémon 6"
 - birthday: ""
   $name: Birthday (YYYY-MM-DD)
   $description: Day 1 of the Pokémon's life. Leave empty to use the day the mod first ran.
@@ -34092,8 +34138,11 @@ constexpr uint64_t kZzzRiseMs = 2400;
 constexpr int kZzzRisePx = 9;
 
 // Where the top of the head is on the canvas right now (mirrored with the cat).
-inline POINT HeadOnCanvas(const CatState& s, uint64_t now) {
-    const cat::Anchor& a = sprites::kFrameAnchors[CurrentFrame(s, now)];
+inline POINT HeadOnCanvas(const CatState& s, uint64_t now, const cat::Anchor* anchors = nullptr) {
+    int frame = CurrentFrame(s, now);
+    const cat::Anchor& a = (anchors && (anchors[frame].x != 0 || anchors[frame].y != 0))
+                               ? anchors[frame]
+                               : sprites::kFrameAnchors[frame];
     int x = s.dir > 0 ? a.x : cat::kSpriteSize - 1 - a.x;
     return {x, a.y + cat::kEffectHeadroom};
 }
@@ -34102,11 +34151,11 @@ inline int Rise(uint64_t elapsed, uint64_t cycleMs, int px) {
     return (int)((elapsed % cycleMs) * (uint64_t)px / cycleMs);
 }
 
-inline EffectDraw CurrentEffect(const CatState& s, uint64_t now) {
+inline EffectDraw CurrentEffect(const CatState& s, uint64_t now, const cat::Anchor* anchors = nullptr) {
     if (s.effect == Effect::None) {
         return {-1, 0, 0};
     }
-    POINT head = HeadOnCanvas(s, now);
+    POINT head = HeadOnCanvas(s, now, anchors);
     int ahead = s.dir > 0 ? 1 : -1;  // towards the cat's face
     uint64_t elapsed = now - s.effectStartMs;
     switch (s.effect) {
@@ -35259,10 +35308,13 @@ enum MenuId : UINT {
 };
 
 struct Settings {
+    int pokemonCount; // 1 to 6
     int gen;  // 1 to 5
     wchar_t genPokemon[6][64];  // gen 1..5
     wchar_t customPokemon[64];
     wchar_t catName[64];
+    wchar_t extraPokemon[5][64];    // slots 2..6 species name or ID
+    wchar_t extraNicknames[5][64];  // slots 2..6 nicknames
     int birthday;  // days since 1970-01-01, 0 = the day the mod first ran
     int size;  // 0 = auto
     engine::ActivityLevel activityLevel;
@@ -35286,10 +35338,13 @@ struct Settings {
 };
 
 constexpr Settings kDefaultSettings = {
+    .pokemonCount = 1,
     .gen = 1,
     .genPokemon = {{}, L"pikachu", L"chikorita", L"treecko", L"turtwig", L"victini"},
     .customPokemon = L"",
     .catName = L"",
+    .extraPokemon = {L"charmander", L"squirtle", L"bulbasaur", L"eevee", L"mew"},
+    .extraNicknames = {L"", L"", L"", L"", L""},
     .birthday = 0,
     .size = 0,
     .activityLevel = engine::ActivityLevel::Normal,
@@ -35345,6 +35400,7 @@ struct ToyWindow {
 };
 
 struct CatWindow {
+    int index = 0;
     HWND hwnd = nullptr;
     HWND taskbar = nullptr;
     RECT taskbarRect = {};
@@ -35370,6 +35426,7 @@ struct CatWindow {
     Settings settings = {};
     uint32_t atlas[sprites::kFrameCount][cat::kSpriteSize * cat::kSpriteSize] =
         {};
+    cat::Anchor anchors[sprites::kFrameCount] = {};
     uint32_t canvas[cat::kCanvasWidth * cat::kCanvasHeight] = {};
     Surface surface;
     ToyWindow toy;
@@ -35387,21 +35444,60 @@ struct CatWindow {
     UINT timerInterval = 0;
 };
 
-CatWindow g_cat;
+// (CatWindow g_cats[kMaxPokemon] declared in dynamic loader above)
 HANDLE g_thread = nullptr;
 HANDLE g_stopEvent = nullptr;
 std::atomic<HWND> g_hwnd{nullptr};
 
 // --- dynamic pokemon loader --------------------------------------------------
 
-inline const wchar_t* GetCurrentPokemonKey(const Settings& s) {
-    if (s.customPokemon[0]) {
-        return s.customPokemon;
+constexpr int kMaxPokemon = 6;
+CatWindow g_cats[kMaxPokemon];
+int g_activePokemonCount = 1;
+
+CatWindow* FindCatByHwnd(HWND hwnd) {
+    if (!hwnd) return nullptr;
+    CatWindow* c = (CatWindow*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
+    if (c) return c;
+    for (int i = 0; i < kMaxPokemon; i++) {
+        if (g_cats[i].hwnd == hwnd || g_cats[i].toy.hwnd == hwnd) {
+            SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)&g_cats[i]);
+            return &g_cats[i];
+        }
     }
-    if (s.gen >= 1 && s.gen <= 5 && s.genPokemon[s.gen][0]) {
-        return s.genPokemon[s.gen];
+    return nullptr;
+}
+
+inline const wchar_t* GetPokemonKeyForSlot(const Settings& s, int slotIndex) {
+    if (slotIndex == 0) {
+        if (s.customPokemon[0]) return s.customPokemon;
+        if (s.gen >= 1 && s.gen <= 5 && s.genPokemon[s.gen][0]) {
+            return s.genPokemon[s.gen];
+        }
+        return L"pikachu";
+    }
+    int extraIdx = slotIndex - 1;
+    if (extraIdx >= 0 && extraIdx < 5) {
+        if (s.extraPokemon[extraIdx][0]) return s.extraPokemon[extraIdx];
+        const wchar_t* const kDefaults[5] = {L"charmander", L"squirtle", L"bulbasaur", L"eevee", L"mew"};
+        return kDefaults[extraIdx];
     }
     return L"pikachu";
+}
+
+inline const wchar_t* GetPokemonNicknameForSlot(const Settings& s, int slotIndex) {
+    if (slotIndex == 0) {
+        return s.catName;
+    }
+    int extraIdx = slotIndex - 1;
+    if (extraIdx >= 0 && extraIdx < 5) {
+        return s.extraNicknames[extraIdx];
+    }
+    return L"";
+}
+
+[[maybe_unused]] inline const wchar_t* GetCurrentPokemonKey(const Settings& s) {
+    return GetPokemonKeyForSlot(s, 0);
 }
 
 static void NormalizeName(const char* in, char* out, size_t outSize) {
@@ -35561,30 +35657,31 @@ void ApplyPokemonToAtlas(CatWindow& c, const pokemon_bank::PokemonSpecies* sp) {
     copyFrame(46, danceRight);  // 3. direita
     copyFrame(47, idle0);       // 4. frontal volta
 
-    // Update anchors for character frames
+    // Initialize per-window head anchors
+    memcpy(c.anchors, sprites::kFrameAnchors, sizeof(c.anchors));
+
     for (int i = 0; i < sprites::kFrameCount; i++) {
         if (i == 18 || i == 19 || i == 20) {
-            // roll frame 1 and belly frames lie down
-            sprites::kFrameAnchors[i].x = sp->anchorX;
-            sprites::kFrameAnchors[i].y = 31;
-            sprites::kFrameAnchors[i].upright = false;
+            c.anchors[i].x = sp->anchorX;
+            c.anchors[i].y = 31;
+            c.anchors[i].upright = false;
         } else if (i == 44) {
-            sprites::kFrameAnchors[i].x = (uint8_t)(sp->anchorX > dx_left ? sp->anchorX - dx_left : sp->anchorX);
-            sprites::kFrameAnchors[i].y = sp->anchorY;
-            sprites::kFrameAnchors[i].upright = true;
+            c.anchors[i].x = (uint8_t)(sp->anchorX > dx_left ? sp->anchorX - dx_left : sp->anchorX);
+            c.anchors[i].y = sp->anchorY;
+            c.anchors[i].upright = true;
         } else if (i == 46) {
-            sprites::kFrameAnchors[i].x = (uint8_t)(sp->anchorX + dx_right < 32 ? sp->anchorX + dx_right : sp->anchorX);
-            sprites::kFrameAnchors[i].y = sp->anchorY;
-            sprites::kFrameAnchors[i].upright = true;
+            c.anchors[i].x = (uint8_t)(sp->anchorX + dx_right < 32 ? sp->anchorX + dx_right : sp->anchorX);
+            c.anchors[i].y = sp->anchorY;
+            c.anchors[i].upright = true;
         } else if (i < 22 || (i >= 26 && i <= 34) || (i >= 37 && i <= 38) || i == 45 || i == 47) {
-            sprites::kFrameAnchors[i].x = sp->anchorX;
-            sprites::kFrameAnchors[i].y = sp->anchorY;
-            sprites::kFrameAnchors[i].upright = true;
+            c.anchors[i].x = sp->anchorX;
+            c.anchors[i].y = sp->anchorY;
+            c.anchors[i].upright = true;
         }
     }
 }
 
-bool DecodeAtlas(CatWindow& c) {
+[[maybe_unused]] bool DecodeAtlas(CatWindow& c, const wchar_t* selectedKey) {
     // 1. Decode base atlas (effects, toys, default frames)
     for (int i = 0; i < sprites::kFrameCount; i++) {
         uint16_t begin = sprites::kFrameOffsets[i];
@@ -35598,10 +35695,13 @@ bool DecodeAtlas(CatWindow& c) {
     }
 
     // 2. Resolve selected Pokemon species
-    const wchar_t* selectedKey = GetCurrentPokemonKey(c.settings);
     const pokemon_bank::PokemonSpecies* sp = FindPokemonSpecies(selectedKey);
     ApplyPokemonToAtlas(c, sp);
     return true;
+}
+
+[[maybe_unused]] bool DecodeAtlas(CatWindow& c) {
+    return DecodeAtlas(c, GetPokemonKeyForSlot(c.settings, c.index));
 }
 
 
@@ -35626,6 +35726,9 @@ int ReadChoice(PCWSTR name, const wchar_t* const (&choices)[N], int fallback) {
 [[maybe_unused]] Settings ReadWindhawkSettings() {
     Settings s = kDefaultSettings;
 
+    constexpr const wchar_t* kCounts[] = {L"1", L"2", L"3", L"4", L"5", L"6"};
+    s.pokemonCount = ReadChoice(L"pokemonCount", kCounts, 0) + 1;
+
     constexpr const wchar_t* kGens[] = {L"1", L"2", L"3", L"4", L"5"};
     s.gen = ReadChoice(L"pokemonGen", kGens, 0) + 1;
 
@@ -35644,6 +35747,29 @@ int ReadChoice(PCWSTR name, const wchar_t* const (&choices)[N], int fallback) {
     auto name = WindhawkUtils::StringSetting::make(L"catName");
     wcsncpy(s.catName, name, std::size(s.catName) - 1);
     s.catName[std::size(s.catName) - 1] = L'\0';
+
+    const wchar_t* const kDefaultExtras[5] = {L"charmander", L"squirtle", L"bulbasaur", L"eevee", L"mew"};
+    for (int i = 0; i < 5; i++) {
+        wchar_t keySpec[32], keyNick[32];
+        swprintf_s(keySpec, L"pokemon%d", i + 2);
+        swprintf_s(keyNick, L"pokemon%d_name", i + 2);
+        auto specVal = WindhawkUtils::StringSetting::make(keySpec);
+        if (specVal && specVal[0]) {
+            wcsncpy(s.extraPokemon[i], specVal, std::size(s.extraPokemon[i]) - 1);
+            s.extraPokemon[i][std::size(s.extraPokemon[i]) - 1] = L'\0';
+        } else {
+            wcsncpy(s.extraPokemon[i], kDefaultExtras[i], std::size(s.extraPokemon[i]) - 1);
+            s.extraPokemon[i][std::size(s.extraPokemon[i]) - 1] = L'\0';
+        }
+        auto nickVal = WindhawkUtils::StringSetting::make(keyNick);
+        if (nickVal && nickVal[0]) {
+            wcsncpy(s.extraNicknames[i], nickVal, std::size(s.extraNicknames[i]) - 1);
+            s.extraNicknames[i][std::size(s.extraNicknames[i]) - 1] = L'\0';
+        } else {
+            s.extraNicknames[i][0] = L'\0';
+        }
+    }
+
     s.birthday = cat::ParseDate(WindhawkUtils::StringSetting::make(L"birthday"));
 
     constexpr const wchar_t* kSizes[] = {L"auto", L"1", L"2", L"3", L"4"};
@@ -35700,41 +35826,74 @@ int Birthday(const CatWindow& c) {
     return c.settings.birthday > 0 ? c.settings.birthday : c.bornDay;
 }
 
-void SaveCat(const engine::CatState& s) {
-    Wh_SetIntValue(L"energy", (int)s.needs.energy);
-    Wh_SetIntValue(L"boredom", (int)s.needs.boredom);
-    Wh_SetIntValue(L"affection", (int)s.needs.affection);
-    Wh_SetIntValue(L"x", (int)s.x);
-    Wh_SetIntValue(L"gifts", s.gifts);
-    Wh_SetIntValue(L"savedAt", NowMinutes());
-    Wh_SetIntValue(L"saved", 1);
+void SaveCat(const engine::CatState& s, int index = 0) {
+    wchar_t key[32];
+    swprintf_s(key, L"p%d_energy", index);
+    Wh_SetIntValue(key, (int)s.needs.energy);
+    swprintf_s(key, L"p%d_boredom", index);
+    Wh_SetIntValue(key, (int)s.needs.boredom);
+    swprintf_s(key, L"p%d_affection", index);
+    Wh_SetIntValue(key, (int)s.needs.affection);
+    swprintf_s(key, L"p%d_x", index);
+    Wh_SetIntValue(key, (int)s.x);
+    swprintf_s(key, L"p%d_gifts", index);
+    Wh_SetIntValue(key, s.gifts);
+    swprintf_s(key, L"p%d_savedAt", index);
+    Wh_SetIntValue(key, NowMinutes());
+    swprintf_s(key, L"p%d_saved", index);
+    Wh_SetIntValue(key, 1);
+
+    if (index == 0) {
+        Wh_SetIntValue(L"energy", (int)s.needs.energy);
+        Wh_SetIntValue(L"boredom", (int)s.needs.boredom);
+        Wh_SetIntValue(L"affection", (int)s.needs.affection);
+        Wh_SetIntValue(L"x", (int)s.x);
+        Wh_SetIntValue(L"gifts", s.gifts);
+        Wh_SetIntValue(L"savedAt", NowMinutes());
+        Wh_SetIntValue(L"saved", 1);
+    }
 }
 
 // The cat's birthday is the first day the mod ran.
-void LoadLifeEvents(CatWindow& c) {
-    c.bornDay = Wh_GetIntValue(L"firstDay", 0);
+void LoadLifeEvents(CatWindow& c, int index = 0) {
+    wchar_t kFirstDay[32], kFedMeal[32], kStayHere[32];
+    swprintf_s(kFirstDay, L"p%d_firstDay", index);
+    swprintf_s(kFedMeal, L"p%d_fedMeal", index);
+    swprintf_s(kStayHere, L"p%d_stayHere", index);
+
+    c.bornDay = Wh_GetIntValue(kFirstDay, index == 0 ? Wh_GetIntValue(L"firstDay", 0) : 0);
     if (c.bornDay <= 0) {
         c.bornDay = LocalDay();
-        Wh_SetIntValue(L"firstDay", c.bornDay);
+        Wh_SetIntValue(kFirstDay, c.bornDay);
     }
-    c.fedMeal = Wh_GetIntValue(L"fedMeal", -1);
-    c.stayHere = Wh_GetIntValue(L"stayHere", 0) != 0;
+    c.fedMeal = Wh_GetIntValue(kFedMeal, -1);
+    c.stayHere = Wh_GetIntValue(kStayHere, 0) != 0;
 }
 
-engine::CatState LoadCat(ULONGLONG now) {
-    uint32_t seed = (uint32_t)now;
-    if (Wh_GetIntValue(L"saved", 0) != 1) {
-        return engine::Initial(seed, 0.0, now, engine::kStartingNeeds);
+engine::CatState LoadCat(ULONGLONG now, int index = 0, double defaultX = 0.0) {
+    uint32_t seed = (uint32_t)(now ^ ((uint32_t)(index + 1) * 0x9E3779B9));
+    wchar_t keySaved[32];
+    swprintf_s(keySaved, L"p%d_saved", index);
+    if (Wh_GetIntValue(keySaved, index == 0 ? Wh_GetIntValue(L"saved", 0) : 0) != 1) {
+        return engine::Initial(seed, defaultX, now, engine::kStartingNeeds);
     }
-    engine::Needs saved = {(double)Wh_GetIntValue(L"energy", 80),
-                           (double)Wh_GetIntValue(L"boredom", 30),
-                           (double)Wh_GetIntValue(L"affection", 50)};
-    int away = NowMinutes() - Wh_GetIntValue(L"savedAt", 0);
+    wchar_t kEnergy[32], kBoredom[32], kAffection[32], kSavedAt[32], kX[32], kGifts[32];
+    swprintf_s(kEnergy, L"p%d_energy", index);
+    swprintf_s(kBoredom, L"p%d_boredom", index);
+    swprintf_s(kAffection, L"p%d_affection", index);
+    swprintf_s(kSavedAt, L"p%d_savedAt", index);
+    swprintf_s(kX, L"p%d_x", index);
+    swprintf_s(kGifts, L"p%d_gifts", index);
+
+    engine::Needs saved = {(double)Wh_GetIntValue(kEnergy, 80),
+                           (double)Wh_GetIntValue(kBoredom, 30),
+                           (double)Wh_GetIntValue(kAffection, 50)};
+    int away = NowMinutes() - Wh_GetIntValue(kSavedAt, 0);
     engine::Needs needs = engine::RestoreNeeds(saved, away > 0 ? away : 0);
-    Wh_Log(L"Restored after %d min: energy %d, boredom %d, affection %d", away,
+    Wh_Log(L"Restored Pokemon %d after %d min: energy %d, boredom %d, affection %d", index, away,
            (int)needs.energy, (int)needs.boredom, (int)needs.affection);
-    engine::CatState cat = engine::Initial(seed, (double)Wh_GetIntValue(L"x", 0), now, needs);
-    cat.gifts = Wh_GetIntValue(L"gifts", 0);
+    engine::CatState cat = engine::Initial(seed, (double)Wh_GetIntValue(kX, (int)defaultX), now, needs);
+    cat.gifts = Wh_GetIntValue(kGifts, 0);
     return cat;
 }
 
@@ -35823,7 +35982,9 @@ void PaintCanvas(CatWindow& c, int frame, int dir,
     const uint32_t* effectPixels = effect.frame >= 0 ? c.atlas[effect.frame] : nullptr;
     const uint32_t* hatPixels = nullptr;
     int hatX = 0, hatY = 0;
-    const cat::Anchor& head = sprites::kFrameAnchors[frame];
+    const cat::Anchor& head = (c.anchors[frame].x != 0 || c.anchors[frame].y != 0)
+                                  ? c.anchors[frame]
+                                  : sprites::kFrameAnchors[frame];
     if (c.hat != cat::Hat::None && head.upright) {
         int anim = c.hat == cat::Hat::Witch   ? sprites::kHatWitch
                    : c.hat == cat::Hat::Santa ? sprites::kHatSanta
@@ -35967,6 +36128,7 @@ struct AudioWatcher {
 };
 
 AudioWatcher g_audio;
+cat::MusicDetector g_sharedMusic = {};
 constexpr DWORD kAudioPollMs = 40;
 constexpr DWORD kAudioIdleMs = 1000;  // while the meter isn't wanted
 
@@ -36113,15 +36275,17 @@ engine::World BuildWorld(CatWindow& c, double dt) {
     w.toysEnabled = set.toys;
     bool wasPlaying = c.music.playing;
     g_audio.enabled = set.danceToMusic;
-    double peak = TakePeak();
-    // The cat's own meows and purring must not count as music.
     bool ownSound = c.purring || GetTickCount64() < c.soundEndsAt;
-    if (!set.danceToMusic) {
-        c.music = {};
-    } else if (!ownSound) {
-        c.music = cat::UpdateMusic(c.music, peak, dt, GetTickCount64());
+    if (c.index == 0) {
+        double peak = TakePeak();
+        if (!set.danceToMusic) {
+            g_sharedMusic = {};
+        } else if (!ownSound) {
+            g_sharedMusic = cat::UpdateMusic(g_sharedMusic, peak, dt, GetTickCount64());
+        }
     }
-    if (c.music.playing != wasPlaying) {
+    c.music = g_sharedMusic;
+    if (c.index == 0 && c.music.playing != wasPlaying) {
         Wh_Log(L"Music %ls (beat %d ms)", c.music.playing ? L"started" : L"stopped",
                (int)c.music.beatMs);
     }
@@ -36232,7 +36396,7 @@ void Present(CatWindow& c, ULONGLONG now) {
     }
     int frame = engine::CurrentFrame(c.state, now);
     engine::EffectDraw effect = c.settings.showEffects
-                                    ? engine::CurrentEffect(c.state, now)
+                                    ? engine::CurrentEffect(c.state, now, c.anchors)
                                     : engine::EffectDraw{-1, 0, 0};
     bool repaint = frame != c.renderedFrame || c.state.dir != c.renderedDir ||
                    c.hat != c.renderedHat ||
@@ -36347,7 +36511,7 @@ void Tick(CatWindow& c) {
     SetTimerInterval(c, engine::TickIntervalMs(c.state));
 }
 
-void ReattachToTaskbar(CatWindow& c) {
+[[maybe_unused]] void ReattachToTaskbar(CatWindow& c) {
     c.taskbar = FindOwnTaskbar();
 #ifndef WH_STANDALONE
     if (c.taskbar) {
@@ -36578,7 +36742,7 @@ LRESULT OnNotify(CatWindow& c, NMHDR* header) {
     }
     auto* info = (NMTTDISPINFO*)header;
     const wchar_t* mood = engine::MoodName(c.state);
-        const wchar_t* selectedKey = GetCurrentPokemonKey(c.settings);
+        const wchar_t* selectedKey = GetPokemonKeyForSlot(c.settings, c.index);
     const pokemon_bank::PokemonSpecies* currentSp = FindPokemonSpecies(selectedKey);
     wchar_t defaultNameBuf[64] = {};
     if (currentSp && currentSp->name) {
@@ -36623,94 +36787,195 @@ void CreateTooltip(CatWindow& c, HINSTANCE instance) {
     SendMessage(c.tooltip, TTM_ADDTOOL, 0, (LPARAM)&tool);
 }
 
-LRESULT CALLBACK CatWndProc(HWND hwnd, UINT msg, WPARAM wParam,
-                            LPARAM lParam) {
-    CatWindow& c = g_cat;
-    if (c.taskbarCreatedMsg && msg == c.taskbarCreatedMsg) {
-        ReattachToTaskbar(c);
+void ResetWindows(CatWindow& c);
+bool CreateCatWindow(CatWindow& c, HINSTANCE instance);
+void DestroyCatWindow(CatWindow& c);
+void ReloadAllPokemon(HINSTANCE instance);
+
+void ReattachAllToTaskbar() {
+    HWND taskbar = FindOwnTaskbar();
+    for (int i = 0; i < g_activePokemonCount; i++) {
+        g_cats[i].taskbar = taskbar;
+#ifndef WH_STANDALONE
+        if (taskbar && g_cats[i].hwnd) {
+            SetWindowLongPtr(g_cats[i].hwnd, GWLP_HWNDPARENT, (LONG_PTR)taskbar);
+            if (g_cats[i].toy.hwnd) {
+                SetWindowLongPtr(g_cats[i].toy.hwnd, GWLP_HWNDPARENT, (LONG_PTR)taskbar);
+            }
+        }
+#endif
+    }
+    Wh_Log(L"Taskbar recreated, reattached %d Pokémon", g_activePokemonCount);
+}
+
+void BroadcastShellHook(WPARAM code, HWND window) {
+    for (int i = 0; i < g_activePokemonCount; i++) {
+        OnShellHook(g_cats[i], code, window);
+    }
+}
+
+void BroadcastSessionChange(WPARAM change) {
+    for (int i = 0; i < g_activePokemonCount; i++) {
+        OnSessionChange(g_cats[i], change);
+    }
+}
+
+void DestroyCatWindow(CatWindow& c) {
+    if (c.hwnd) {
+        if (c.toy.hwnd) {
+            DestroyWindow(c.toy.hwnd);
+            c.toy.hwnd = nullptr;
+        }
+        KillTimer(c.hwnd, kTimerId);
+        KillTimer(c.hwnd, kSaveTimerId);
+        if (c.index == 0) {
+            DeregisterShellHookWindow(c.hwnd);
+            WTSUnRegisterSessionNotification(c.hwnd);
+        }
+        HWND h = c.hwnd;
+        c.hwnd = nullptr;
+        DestroyWindow(h);
+    }
+    ResetWindows(c);
+}
+
+void ReloadAllPokemon(HINSTANCE instance) {
+    Settings newSettings = LoadSettings();
+    int newCount = ClampInt(newSettings.pokemonCount, 1, kMaxPokemon);
+
+    for (int i = 0; i < kMaxPokemon; i++) {
+        CatWindow& c = g_cats[i];
+        c.index = i;
+        if (i < newCount) {
+            c.settings = newSettings;
+            const wchar_t* specKey = GetPokemonKeyForSlot(newSettings, i);
+            const wchar_t* nick = GetPokemonNicknameForSlot(newSettings, i);
+            if (nick && nick[0]) {
+                wcsncpy_s(c.settings.catName, nick, 63);
+            } else {
+                c.settings.catName[0] = L'\0';
+            }
+            if (!c.hwnd) {
+                c.taskbar = g_cats[0].taskbar ? g_cats[0].taskbar : FindOwnTaskbar();
+                DecodeAtlas(c, specKey);
+                double defaultX = 100.0 + (i * 200.0);
+                c.state = LoadCat(GetTickCount64(), i, defaultX);
+                LoadLifeEvents(c, i);
+                BuildSounds(c);
+                if (CreateCatWindow(c, instance)) {
+                    SetTimerInterval(c, kActiveIntervalMs);
+                }
+            } else {
+                DecodeAtlas(c, specKey);
+                c.renderedFrame = -1;
+                if (!c.settings.sounds) {
+                    StopSounds(c);
+                }
+                BuildSounds(c);
+                ApplyGhostStyle(c);
+                c.scale = 0;
+            }
+        } else {
+            if (c.hwnd) {
+                SaveCat(c.state, i);
+                StopSounds(c);
+                DestroyCatWindow(c);
+            }
+        }
+    }
+    g_activePokemonCount = newCount;
+    if (g_cats[0].hwnd) {
+        g_hwnd = g_cats[0].hwnd;
+    }
+}
+
+LRESULT CALLBACK CatWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
+    CatWindow* c = FindCatByHwnd(hwnd);
+    if (!c) {
+        return DefWindowProc(hwnd, msg, wParam, lParam);
+    }
+    if (c->taskbarCreatedMsg && msg == c->taskbarCreatedMsg) {
+        ReattachAllToTaskbar();
         return 0;
     }
-    if (c.shellHookMsg && msg == c.shellHookMsg) {
-        OnShellHook(c, wParam, (HWND)lParam);
+    if (c->shellHookMsg && msg == c->shellHookMsg) {
+        BroadcastShellHook(wParam, (HWND)lParam);
         return 0;
     }
     switch (msg) {
         case WM_NOTIFY:
-            return OnNotify(c, (NMHDR*)lParam);
+            return OnNotify(*c, (NMHDR*)lParam);
         case WM_WTSSESSION_CHANGE:
-            OnSessionChange(c, wParam);
+            BroadcastSessionChange(wParam);
             return 0;
         case WM_TIMER:
             if (wParam == kTimerId) {
-                Tick(c);
+                Tick(*c);
             } else if (wParam == kSaveTimerId) {
-                SaveCat(c.state);
+                SaveCat(c->state, c->index);
             }
             return 0;
         case WM_MOUSEMOVE:
-            OnMouseMove(c);
+            OnMouseMove(*c);
             return 0;
         case WM_MOUSELEAVE:
-            c.mouse.hovered = false;
-            c.mouse.trackingLeave = false;
+            c->mouse.hovered = false;
+            c->mouse.trackingLeave = false;
             return 0;
         case WM_LBUTTONDOWN:
-            OnButtonDown(c);
+            OnButtonDown(*c);
             return 0;
         case WM_LBUTTONUP:
-            OnButtonUp(c);
+            OnButtonUp(*c);
             return 0;
         case WM_LBUTTONDBLCLK:
-            OnDoubleClick(c);
+            OnDoubleClick(*c);
             return 0;
         case WM_CAPTURECHANGED:
-            EndDrag(c);
+            EndDrag(*c);
             return 0;
         case WM_RBUTTONUP:
-            ShowMenu(c);
+            ShowMenu(*c);
             return 0;
         case WM_SETCURSOR:
             SetCursor(LoadCursor(nullptr, IDC_HAND));
             return TRUE;
         case WM_MOUSEACTIVATE:
             return MA_NOACTIVATE;
-        case WM_APP_RELOAD_SETTINGS:
-            c.settings = LoadSettings();
-            DecodeAtlas(c);
-            c.renderedFrame = -1;
-            if (!c.settings.sounds) {
-                StopSounds(c);
-            }
-            BuildSounds(c);
-            ApplyGhostStyle(c);
-            c.scale = 0;  // force bitmap rebuild in case size changed
+        case WM_APP_RELOAD_SETTINGS: {
+            HINSTANCE instance = nullptr;
+            GetModuleHandleEx(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS |
+                                  GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
+                              (LPCWSTR)&CatWndProc, &instance);
+            ReloadAllPokemon(instance);
             return 0;
+        }
         case WM_CLOSE:
-            DestroyWindow(hwnd);
+            for (int i = 0; i < kMaxPokemon; i++) {
+                if (g_cats[i].hwnd) {
+                    SaveCat(g_cats[i].state, i);
+                    DestroyCatWindow(g_cats[i]);
+                }
+            }
+            PostQuitMessage(0);
             return 0;
         case WM_DESTROY:
-            if (c.toy.hwnd) {
-                DestroyWindow(c.toy.hwnd);
-                c.toy.hwnd = nullptr;
-            }
-            KillTimer(hwnd, kTimerId);
-            KillTimer(hwnd, kSaveTimerId);
-            DeregisterShellHookWindow(hwnd);
-            WTSUnRegisterSessionNotification(hwnd);
-            PostQuitMessage(0);
             return 0;
     }
     return DefWindowProc(hwnd, msg, wParam, lParam);
 }
 
 LRESULT CALLBACK ToyWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
-    CatWindow& c = g_cat;
+    CatWindow* c = FindCatByHwnd(hwnd);
+    if (!c) {
+        return DefWindowProc(hwnd, msg, wParam, lParam);
+    }
     switch (msg) {
         case WM_LBUTTONUP:
-            SetState(c, engine::OnToyClicked(c.state, c.world, GetTickCount64()));
+            SetState(*c, engine::OnToyClicked(c->state, c->world, GetTickCount64()));
             return 0;
         case WM_RBUTTONUP:
-            ShowToyMenu(c, hwnd);
+            ShowToyMenu(*c, hwnd);
             return 0;
         case WM_SETCURSOR:
             SetCursor(LoadCursor(nullptr, IDC_HAND));
@@ -36721,11 +36986,6 @@ LRESULT CALLBACK ToyWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
     return DefWindowProc(hwnd, msg, wParam, lParam);
 }
 
-// (DecodeAtlas and dynamic pokemon loader defined above)
-
-// Waits for this process's taskbar, however long explorer takes. Gives up
-// when the taskbar belongs to another explorer process (this one is a
-// separate folder-window process) or when the mod is stopping.
 HWND WaitForTaskbar() {
     for (;;) {
         if (FindWindow(L"Shell_TrayWnd", nullptr)) {
@@ -36737,7 +36997,6 @@ HWND WaitForTaskbar() {
     }
 }
 
-// Forgets everything about the old windows, keeping the cat itself.
 void ResetWindows(CatWindow& c) {
     FreeSurface(c.surface);
     FreeSurface(c.toy.surface);
@@ -36765,20 +37024,24 @@ bool CreateCatWindow(CatWindow& c, HINSTANCE instance) {
         Wh_Log(L"CreateWindowEx failed: %u", GetLastError());
         return false;
     }
+    SetWindowLongPtr(c.hwnd, GWLP_USERDATA, (LONG_PTR)&c);
     ApplyGhostStyle(c);
     c.shellHookMsg = RegisterWindowMessage(L"SHELLHOOK");
-    if (!RegisterShellHookWindow(c.hwnd)) {
-        Wh_Log(L"RegisterShellHookWindow failed: %u", GetLastError());
-    }
-    if (!WTSRegisterSessionNotification(c.hwnd, NOTIFY_FOR_THIS_SESSION)) {
-        Wh_Log(L"WTSRegisterSessionNotification failed: %u", GetLastError());
+    if (c.index == 0) {
+        if (!RegisterShellHookWindow(c.hwnd)) {
+            Wh_Log(L"RegisterShellHookWindow failed: %u", GetLastError());
+        }
+        if (!WTSRegisterSessionNotification(c.hwnd, NOTIFY_FOR_THIS_SESSION)) {
+            Wh_Log(L"WTSRegisterSessionNotification failed: %u", GetLastError());
+        }
     }
     CreateTooltip(c, instance);
     SetTimer(c.hwnd, kSaveTimerId, kSaveIntervalMs, nullptr);
-    // The toy shares the cat's owner and styles; it is shown only while a toy is out.
     c.toy.hwnd = CreateWindowEx(exStyle, kToyWindowClass, L"Taskbar Pokémon Toy", WS_POPUP, 0, 0,
                                 1, 1, owner, nullptr, instance, nullptr);
-    if (!c.toy.hwnd) {
+    if (c.toy.hwnd) {
+        SetWindowLongPtr(c.toy.hwnd, GWLP_USERDATA, (LONG_PTR)&c);
+    } else {
         Wh_Log(L"Toy window creation failed: %u", GetLastError());
     }
     ApplyGhostStyle(c);
@@ -36786,21 +37049,12 @@ bool CreateCatWindow(CatWindow& c, HINSTANCE instance) {
 }
 
 DWORD WINAPI CatThread(LPVOID) {
-    CatWindow& c = g_cat;
-    c.settings = LoadSettings();
-    c.taskbar = WaitForTaskbar();
-    if (!c.taskbar) {
-        Wh_Log(L"No taskbar owned by this process, cat stays home");
+    HWND taskbar = WaitForTaskbar();
+    if (!taskbar) {
+        Wh_Log(L"No taskbar owned by this process, Pokémon stay home");
         return 0;
     }
-    if (!DecodeAtlas(c)) {
-        Wh_Log(L"Sprite data is malformed");
-        return 0;
-    }
-    c.state = LoadCat(GetTickCount64());
-    LoadLifeEvents(c);
 
-    // Register the classes under the mod's own module, not explorer's.
     HINSTANCE instance = nullptr;
     GetModuleHandleEx(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS |
                           GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
@@ -36824,53 +37078,88 @@ DWORD WINAPI CatThread(LPVOID) {
         Wh_Log(L"RegisterClassEx (toy) failed: %u", GetLastError());
     }
 
-    c.taskbarCreatedMsg = RegisterWindowMessage(L"TaskbarCreated");
-    // Started only now: from here on every way out of this thread goes
-    // through StopAudioWatcher(), so the audio thread can't outlive the mod.
+    UINT taskbarCreatedMsg = RegisterWindowMessage(L"TaskbarCreated");
+    for (int i = 0; i < kMaxPokemon; i++) {
+        g_cats[i].taskbarCreatedMsg = taskbarCreatedMsg;
+    }
+
     StartAudioWatcher();
-    // The taskbar owns the cat's windows, so if explorer recreates the taskbar
-    // they go with it. Make new ones for the new taskbar until told to stop.
+
     while (WaitForSingleObject(g_stopEvent, 0) != WAIT_OBJECT_0) {
-        if (!c.taskbar && !(c.taskbar = WaitForTaskbar())) {
+        if (!taskbar && !(taskbar = WaitForTaskbar())) {
             break;
         }
-        // Read here, not once at startup: settings changed while there was
-        // no window to post the reload to would otherwise be lost.
-        c.settings = LoadSettings();
-        BuildSounds(c);
-        if (!CreateCatWindow(c, instance)) {
-            break;
+
+        Settings settings = LoadSettings();
+        int count = ClampInt(settings.pokemonCount, 1, kMaxPokemon);
+        g_activePokemonCount = count;
+
+        for (int i = 0; i < count; i++) {
+            CatWindow& c = g_cats[i];
+            c.index = i;
+            c.taskbar = taskbar;
+            c.settings = settings;
+            const wchar_t* specKey = GetPokemonKeyForSlot(settings, i);
+            const wchar_t* nick = GetPokemonNicknameForSlot(settings, i);
+            if (nick && nick[0]) {
+                wcsncpy_s(c.settings.catName, nick, 63);
+            } else {
+                c.settings.catName[0] = L'\0';
+            }
+            DecodeAtlas(c, specKey);
+            double defaultX = 100.0 + (i * 200.0);
+            c.state = LoadCat(GetTickCount64(), i, defaultX);
+            LoadLifeEvents(c, i);
+            BuildSounds(c);
+            if (!CreateCatWindow(c, instance)) {
+                break;
+            }
         }
-        g_hwnd = c.hwnd;
-        // Stop may have been requested while the window was being created.
+        if (g_cats[0].hwnd) {
+            g_hwnd = g_cats[0].hwnd;
+        }
         if (WaitForSingleObject(g_stopEvent, 0) == WAIT_OBJECT_0) {
-            DestroyWindow(c.hwnd);
+            for (int i = 0; i < count; i++) {
+                if (g_cats[i].hwnd) DestroyCatWindow(g_cats[i]);
+            }
         } else {
-            SetTimerInterval(c, kActiveIntervalMs);
-            Wh_Log(L"Cat window created");
+            for (int i = 0; i < count; i++) {
+                if (g_cats[i].hwnd) SetTimerInterval(g_cats[i], kActiveIntervalMs);
+            }
+            Wh_Log(L"%d Pokémon window(s) created", count);
         }
+
         MSG msg;
         while (GetMessage(&msg, nullptr, 0, 0) > 0) {
             TranslateMessage(&msg);
             DispatchMessage(&msg);
         }
+
         g_hwnd = nullptr;
-        SaveCat(c.state);
-        StopSounds(c);
-        ResetWindows(c);
-        c.taskbar = nullptr;  // look for the (new) taskbar again
+        for (int i = 0; i < kMaxPokemon; i++) {
+            if (g_cats[i].hwnd) {
+                SaveCat(g_cats[i].state, i);
+                StopSounds(g_cats[i]);
+                DestroyCatWindow(g_cats[i]);
+            }
+        }
+        taskbar = nullptr;
     }
 
-    ForceStopSounds(c);  // before the buffers it plays from are freed
+    for (int i = 0; i < kMaxPokemon; i++) {
+        ForceStopSounds(g_cats[i]);
+    }
     StopAudioWatcher();
-    FreeSurface(c.surface);
-    FreeSurface(c.toy.surface);
+    for (int i = 0; i < kMaxPokemon; i++) {
+        FreeSurface(g_cats[i].surface);
+        FreeSurface(g_cats[i].toy.surface);
+    }
     UnregisterClass(kWindowClass, instance);
     UnregisterClass(kToyWindowClass, instance);
-    // Reset in place: `c = CatWindow()` would build a ~300 KB temporary on
-    // this thread's stack.
-    c.~CatWindow();
-    new (&c) CatWindow();
+    for (int i = 0; i < kMaxPokemon; i++) {
+        g_cats[i].~CatWindow();
+        new (&g_cats[i]) CatWindow();
+    }
     return 0;
 }
 

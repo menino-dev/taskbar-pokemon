@@ -10,6 +10,10 @@ Based on [Taskbar Cat](https://github.com/viraj-rgb/windhawk-taskbar-cat) by [vi
 
 ## ✨ Features
 
+- **Multi-Pokémon Support (Full Party of up to 6!):**
+  - Choose how many Pokémon companions roam your taskbar simultaneously (from 1 up to 6!).
+  - Each Pokémon has its own independent mood, energy, personality, and position across the taskbar.
+  - Interact with each Pokémon individually: hover to pet, drag & drop to relocate, or open its right-click menu.
 - **634 Pokémon Across 5 Generations:**
   - **Gen 1 (Kanto):** 153 Pokémon (Bulbasaur, Charmander, Squirtle, Pikachu, Eevee, Mew, etc.)
   - **Gen 2 (Johto):** 132 Pokémon (Chikorita, Cyndaquil, Totodile, Umbreon, Espeon, Celebi, etc.)
@@ -17,7 +21,7 @@ Based on [Taskbar Cat](https://github.com/viraj-rgb/windhawk-taskbar-cat) by [vi
   - **Gen 4 (Sinnoh):** 142 Pokémon (Turtwig, Chimchar, Piplup, Gengar, Garchomp, etc.)
   - **Gen 5 (Unova):** 69 Pokémon (Victini, Snivy, Tepig, Oshawott, Zoroark, etc.)
 - **Shiny Variants:** Toggle normal or shiny palette for any Pokémon in the mod settings.
-- **Music Reactive Dance:** When music or video is playing on your PC (Spotify, YouTube, games), your Pokémon grooves to the beat in a continuous 3-pose sway loop (left ↔ center ↔ right) with music notes floating above!
+- **Synchronized Music Dance:** When music or video is playing on your PC (Spotify, YouTube, games), ALL active Pokémon on your taskbar dance together in perfect synchronization to the beat in a continuous 3-pose sway loop (left ↔ center ↔ right) with music notes floating above!
 - **Interactive Behaviors:**
   - **Hover:** Pet your Pokémon; hearts appear.
   - **Click:** Wake it up or give a friendly call.
@@ -27,7 +31,7 @@ Based on [Taskbar Cat](https://github.com/viraj-rgb/windhawk-taskbar-cat) by [vi
   - **Right-Click Menu:** Pet, treat, nap, wake up, stay here, or play with a Pokéball.
   - **Pokéball Toy:** Toss a Pokéball onto the taskbar for your Pokémon to chase and nudge.
 - **Autonomous Moods & Day/Night Cycle:**
-  - Energy, boredom, and curiosity drift dynamically.
+  - Energy, boredom, and curiosity drift dynamically for each companion.
   - Takes naps when tired (more often at night).
   - Sleeps when you leave the computer idle for 5 minutes.
   - Wears festive seasonal hats (Halloween, Christmas, New Year).
@@ -41,7 +45,7 @@ Based on [Taskbar Cat](https://github.com/viraj-rgb/windhawk-taskbar-cat) by [vi
 3. Select **Mod Manager** -> **New Mod**.
 4. Replace the editor contents with the code from [`taskbar-pokemon.wh.cpp`](taskbar-pokemon.wh.cpp).
 5. Click **Compile Mod**.
-6. Enjoy your new companion on the taskbar!
+6. Enjoy your Pokémon companions on the taskbar!
 
 ---
 
@@ -49,10 +53,9 @@ Based on [Taskbar Cat](https://github.com/viraj-rgb/windhawk-taskbar-cat) by [vi
 
 In Windhawk, open the **Details** / **Settings** tab of Taskbar Pokémon to customize:
 
-- **Generation:** Choose between Gen 1, Gen 2, Gen 3, Gen 4, or Gen 5.
-- **Pokémon Selection:** Dedicated dropdown list for each generation.
-- **Shiny:** Enable or disable shiny forms.
-- **Companion's Name:** Custom name shown in tooltips and interactions.
+- **Number of Pokémon:** Select how many Pokémon to display (1 to 6).
+- **Pokémon 1:** Select Generation (Gen 1-5) and use dropdown, or type a custom name/ID. Set optional nickname.
+- **Pokémon 2 to 6:** Configure each additional party member by typing any Pokémon name or ID (e.g. `charmander`, `squirtle`, `gengar`, `lucario`, `eevee`, `mewtwo`, etc.) with optional individual nicknames.
 - **Walk Speed & Behavior:** Adjust walking pace, sleepiness, sound effects, and scale.
 
 ---
@@ -79,3 +82,4 @@ powershell -ExecutionPolicy Bypass -File tools/run_pokemon_checks.ps1
 - Pokémon sprite sheets from [vscode-pokemon](https://github.com/jakobhoeg/vscode-pokemon) by [jakobhoeg](https://github.com/jakobhoeg) (MIT License).
 - Pokémon is a registered trademark of Nintendo, Creatures Inc., and GAME FREAK Inc. This project is a non-commercial, fan-made open-source modification.
 - Released under the [MIT License](LICENSE).
+

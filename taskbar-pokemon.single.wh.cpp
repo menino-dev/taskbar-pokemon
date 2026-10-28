@@ -1770,8 +1770,11 @@ constexpr uint64_t kZzzRiseMs = 2400;
 constexpr int kZzzRisePx = 9;
 
 // Where the top of the head is on the canvas right now (mirrored with the cat).
-inline POINT HeadOnCanvas(const CatState& s, uint64_t now) {
-    const cat::Anchor& a = sprites::kFrameAnchors[CurrentFrame(s, now)];
+inline POINT HeadOnCanvas(const CatState& s, uint64_t now, const cat::Anchor* anchors = nullptr) {
+    int frame = CurrentFrame(s, now);
+    const cat::Anchor& a = (anchors && (anchors[frame].x != 0 || anchors[frame].y != 0))
+                               ? anchors[frame]
+                               : sprites::kFrameAnchors[frame];
     int x = s.dir > 0 ? a.x : cat::kSpriteSize - 1 - a.x;
     return {x, a.y + cat::kEffectHeadroom};
 }
@@ -1780,11 +1783,11 @@ inline int Rise(uint64_t elapsed, uint64_t cycleMs, int px) {
     return (int)((elapsed % cycleMs) * (uint64_t)px / cycleMs);
 }
 
-inline EffectDraw CurrentEffect(const CatState& s, uint64_t now) {
+inline EffectDraw CurrentEffect(const CatState& s, uint64_t now, const cat::Anchor* anchors = nullptr) {
     if (s.effect == Effect::None) {
         return {-1, 0, 0};
     }
-    POINT head = HeadOnCanvas(s, now);
+    POINT head = HeadOnCanvas(s, now, anchors);
     int ahead = s.dir > 0 ? 1 : -1;  // towards the cat's face
     uint64_t elapsed = now - s.effectStartMs;
     switch (s.effect) {
@@ -3016,6 +3019,7 @@ struct ToyWindow {
 };
 
 struct CatWindow {
+    int index = 0;
     HWND hwnd = nullptr;
     HWND taskbar = nullptr;
     RECT taskbarRect = {};
@@ -3041,6 +3045,7 @@ struct CatWindow {
     Settings settings = {};
     uint32_t atlas[sprites::kFrameCount][cat::kSpriteSize * cat::kSpriteSize] =
         {};
+    cat::Anchor anchors[sprites::kFrameCount] = {};
     uint32_t canvas[cat::kCanvasWidth * cat::kCanvasHeight] = {};
     Surface surface;
     ToyWindow toy;
@@ -3142,41 +3147,74 @@ int Birthday(const CatWindow& c) {
     return c.settings.birthday > 0 ? c.settings.birthday : c.bornDay;
 }
 
-void SaveCat(const engine::CatState& s) {
-    Wh_SetIntValue(L"energy", (int)s.needs.energy);
-    Wh_SetIntValue(L"boredom", (int)s.needs.boredom);
-    Wh_SetIntValue(L"affection", (int)s.needs.affection);
-    Wh_SetIntValue(L"x", (int)s.x);
-    Wh_SetIntValue(L"gifts", s.gifts);
-    Wh_SetIntValue(L"savedAt", NowMinutes());
-    Wh_SetIntValue(L"saved", 1);
+void SaveCat(const engine::CatState& s, int index = 0) {
+    wchar_t key[32];
+    swprintf_s(key, L"p%d_energy", index);
+    Wh_SetIntValue(key, (int)s.needs.energy);
+    swprintf_s(key, L"p%d_boredom", index);
+    Wh_SetIntValue(key, (int)s.needs.boredom);
+    swprintf_s(key, L"p%d_affection", index);
+    Wh_SetIntValue(key, (int)s.needs.affection);
+    swprintf_s(key, L"p%d_x", index);
+    Wh_SetIntValue(key, (int)s.x);
+    swprintf_s(key, L"p%d_gifts", index);
+    Wh_SetIntValue(key, s.gifts);
+    swprintf_s(key, L"p%d_savedAt", index);
+    Wh_SetIntValue(key, NowMinutes());
+    swprintf_s(key, L"p%d_saved", index);
+    Wh_SetIntValue(key, 1);
+
+    if (index == 0) {
+        Wh_SetIntValue(L"energy", (int)s.needs.energy);
+        Wh_SetIntValue(L"boredom", (int)s.needs.boredom);
+        Wh_SetIntValue(L"affection", (int)s.needs.affection);
+        Wh_SetIntValue(L"x", (int)s.x);
+        Wh_SetIntValue(L"gifts", s.gifts);
+        Wh_SetIntValue(L"savedAt", NowMinutes());
+        Wh_SetIntValue(L"saved", 1);
+    }
 }
 
 // The cat's birthday is the first day the mod ran.
-void LoadLifeEvents(CatWindow& c) {
-    c.bornDay = Wh_GetIntValue(L"firstDay", 0);
+void LoadLifeEvents(CatWindow& c, int index = 0) {
+    wchar_t kFirstDay[32], kFedMeal[32], kStayHere[32];
+    swprintf_s(kFirstDay, L"p%d_firstDay", index);
+    swprintf_s(kFedMeal, L"p%d_fedMeal", index);
+    swprintf_s(kStayHere, L"p%d_stayHere", index);
+
+    c.bornDay = Wh_GetIntValue(kFirstDay, index == 0 ? Wh_GetIntValue(L"firstDay", 0) : 0);
     if (c.bornDay <= 0) {
         c.bornDay = LocalDay();
-        Wh_SetIntValue(L"firstDay", c.bornDay);
+        Wh_SetIntValue(kFirstDay, c.bornDay);
     }
-    c.fedMeal = Wh_GetIntValue(L"fedMeal", -1);
-    c.stayHere = Wh_GetIntValue(L"stayHere", 0) != 0;
+    c.fedMeal = Wh_GetIntValue(kFedMeal, -1);
+    c.stayHere = Wh_GetIntValue(kStayHere, 0) != 0;
 }
 
-engine::CatState LoadCat(ULONGLONG now) {
-    uint32_t seed = (uint32_t)now;
-    if (Wh_GetIntValue(L"saved", 0) != 1) {
-        return engine::Initial(seed, 0.0, now, engine::kStartingNeeds);
+engine::CatState LoadCat(ULONGLONG now, int index = 0, double defaultX = 0.0) {
+    uint32_t seed = (uint32_t)(now ^ ((uint32_t)(index + 1) * 0x9E3779B9));
+    wchar_t keySaved[32];
+    swprintf_s(keySaved, L"p%d_saved", index);
+    if (Wh_GetIntValue(keySaved, index == 0 ? Wh_GetIntValue(L"saved", 0) : 0) != 1) {
+        return engine::Initial(seed, defaultX, now, engine::kStartingNeeds);
     }
-    engine::Needs saved = {(double)Wh_GetIntValue(L"energy", 80),
-                           (double)Wh_GetIntValue(L"boredom", 30),
-                           (double)Wh_GetIntValue(L"affection", 50)};
-    int away = NowMinutes() - Wh_GetIntValue(L"savedAt", 0);
+    wchar_t kEnergy[32], kBoredom[32], kAffection[32], kSavedAt[32], kX[32], kGifts[32];
+    swprintf_s(kEnergy, L"p%d_energy", index);
+    swprintf_s(kBoredom, L"p%d_boredom", index);
+    swprintf_s(kAffection, L"p%d_affection", index);
+    swprintf_s(kSavedAt, L"p%d_savedAt", index);
+    swprintf_s(kX, L"p%d_x", index);
+    swprintf_s(kGifts, L"p%d_gifts", index);
+
+    engine::Needs saved = {(double)Wh_GetIntValue(kEnergy, 80),
+                           (double)Wh_GetIntValue(kBoredom, 30),
+                           (double)Wh_GetIntValue(kAffection, 50)};
+    int away = NowMinutes() - Wh_GetIntValue(kSavedAt, 0);
     engine::Needs needs = engine::RestoreNeeds(saved, away > 0 ? away : 0);
-    Wh_Log(L"Restored after %d min: energy %d, boredom %d, affection %d", away,
+    Wh_Log(L"Restored Pokemon %d after %d min: energy %d, boredom %d, affection %d", index, away,
            (int)needs.energy, (int)needs.boredom, (int)needs.affection);
-    engine::CatState cat = engine::Initial(seed, (double)Wh_GetIntValue(L"x", 0), now, needs);
-    cat.gifts = Wh_GetIntValue(L"gifts", 0);
+    engine::CatState cat = engine::Initial(seed, (double)Wh_GetIntValue(kX, (int)defaultX), now, needs);
+    cat.gifts = Wh_GetIntValue(kGifts, 0);
     return cat;
 }
 
@@ -3265,7 +3303,9 @@ void PaintCanvas(CatWindow& c, int frame, int dir,
     const uint32_t* effectPixels = effect.frame >= 0 ? c.atlas[effect.frame] : nullptr;
     const uint32_t* hatPixels = nullptr;
     int hatX = 0, hatY = 0;
-    const cat::Anchor& head = sprites::kFrameAnchors[frame];
+    const cat::Anchor& head = (c.anchors[frame].x != 0 || c.anchors[frame].y != 0)
+                                  ? c.anchors[frame]
+                                  : sprites::kFrameAnchors[frame];
     if (c.hat != cat::Hat::None && head.upright) {
         int anim = c.hat == cat::Hat::Witch   ? sprites::kHatWitch
                    : c.hat == cat::Hat::Santa ? sprites::kHatSanta
@@ -3409,6 +3449,7 @@ struct AudioWatcher {
 };
 
 AudioWatcher g_audio;
+cat::MusicDetector g_sharedMusic = {};
 constexpr DWORD kAudioPollMs = 40;
 constexpr DWORD kAudioIdleMs = 1000;  // while the meter isn't wanted
 
@@ -3555,15 +3596,17 @@ engine::World BuildWorld(CatWindow& c, double dt) {
     w.toysEnabled = set.toys;
     bool wasPlaying = c.music.playing;
     g_audio.enabled = set.danceToMusic;
-    double peak = TakePeak();
-    // The cat's own meows and purring must not count as music.
     bool ownSound = c.purring || GetTickCount64() < c.soundEndsAt;
-    if (!set.danceToMusic) {
-        c.music = {};
-    } else if (!ownSound) {
-        c.music = cat::UpdateMusic(c.music, peak, dt, GetTickCount64());
+    if (c.index == 0) {
+        double peak = TakePeak();
+        if (!set.danceToMusic) {
+            g_sharedMusic = {};
+        } else if (!ownSound) {
+            g_sharedMusic = cat::UpdateMusic(g_sharedMusic, peak, dt, GetTickCount64());
+        }
     }
-    if (c.music.playing != wasPlaying) {
+    c.music = g_sharedMusic;
+    if (c.index == 0 && c.music.playing != wasPlaying) {
         Wh_Log(L"Music %ls (beat %d ms)", c.music.playing ? L"started" : L"stopped",
                (int)c.music.beatMs);
     }
@@ -3674,7 +3717,7 @@ void Present(CatWindow& c, ULONGLONG now) {
     }
     int frame = engine::CurrentFrame(c.state, now);
     engine::EffectDraw effect = c.settings.showEffects
-                                    ? engine::CurrentEffect(c.state, now)
+                                    ? engine::CurrentEffect(c.state, now, c.anchors)
                                     : engine::EffectDraw{-1, 0, 0};
     bool repaint = frame != c.renderedFrame || c.state.dir != c.renderedDir ||
                    c.hat != c.renderedHat ||
@@ -3789,7 +3832,7 @@ void Tick(CatWindow& c) {
     SetTimerInterval(c, engine::TickIntervalMs(c.state));
 }
 
-void ReattachToTaskbar(CatWindow& c) {
+[[maybe_unused]] void ReattachToTaskbar(CatWindow& c) {
     c.taskbar = FindOwnTaskbar();
 #ifndef WH_STANDALONE
     if (c.taskbar) {
